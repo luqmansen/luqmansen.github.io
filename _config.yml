@@ -4,7 +4,7 @@ title: "Luqmansen's Blog"
 description: "Thoughts, stories and ideas."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
-baseurl: ''
+baseurl: '/blog'
 google_analytics: 'UA-46278016-1'
 disqus: 'luqmansen'
 mailchimp-list: ''
@@ -40,7 +40,7 @@ jekyll-archives:
     category: '/category/:name/'
     
 # Pagination 
-paginate: 6
+paginate: 20
 paginate_path: /page:num/
     
 # Other

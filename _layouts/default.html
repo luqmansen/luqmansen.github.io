@@ -15,9 +15,12 @@
 <link href="{{ site.baseurl }}/assets/css/screen.css" rel="stylesheet">
 
 <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
-
+<style>
+    figure,img {text-align:center; margin:1em;}
+    figcaption {font-size:18px;}
+</style>
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
-
+<link href="{{ site.baseurl }}/assets/css/prism.css" rel="stylesheet">
 </head>
 
 {% if jekyll.environment == 'production' %}
@@ -75,9 +78,9 @@ ga('send', 'pageview');
                 <a class="nav-link" href="{{ site.baseurl }}/about">About</a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                 <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"> Docs</a>
-                </li>
+                </li> -->
 
                 {% include search-lunr.html %}
 
@@ -114,7 +117,7 @@ ga('send', 'pageview');
 {% if site.mailchimp-list %}
 <!-- Bottom Alert Bar
 ================================================== -->
-<div class="alertbar">
+<!-- <div class="alertbar">
 	<div class="container text-center">
 		<span><img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
         <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
@@ -127,7 +130,7 @@ ga('send', 'pageview');
 </div>
 {% endif %}
     
-</div>
+</div> -->
 
 <!-- Categories Jumbotron
 ================================================== -->
@@ -191,6 +194,7 @@ ga('send', 'pageview');
 {% if page.layout == 'post' %}
 <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
 {% endif %}
+<script src="{{ site.baseurl }}/assets/js/prism.js"></script>
 
 </body>
 </html>

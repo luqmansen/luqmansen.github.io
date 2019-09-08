@@ -4,7 +4,7 @@ title: "Luqmansen's Blog"
 description: "Thoughts, stories and ideas."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
-baseurl: '/blog'
+baseurl: ' '
 google_analytics: 'UA-46278016-1'
 disqus: 'luqmansen'
 mailchimp-list: ''

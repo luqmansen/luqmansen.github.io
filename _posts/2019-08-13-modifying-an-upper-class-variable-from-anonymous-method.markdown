@@ -3,10 +3,7 @@ layout: post
 title: Modifying an Outer Variable within an Anonymous Class on Retrofit
 date: '2019-08-13 01:51:27'
 image: assets/images/1_TB8U_zc34XG2qk1LeOBdPA.jpg
-tags:
-- programming
-- java
-- android
+categories: [programming,software-development,java,android]
 ---
 
 So, here's the thing, I want to be able to access a defined variable inside the method to be accessed by an anonymous class inside that method, something like this

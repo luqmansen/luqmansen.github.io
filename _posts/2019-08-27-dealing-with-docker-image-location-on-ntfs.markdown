@@ -10,7 +10,7 @@ TL;DR : you can't, at least for now
 
 Long Version:
 
-So, i learning docker recently, and i notice that docker took quite a lot of space on my drive for just random image that i pull from dockerhub (yes, just for curiosity). I just being considerate my tiny weeny ssd write cycle. After my previous post on [here](https://blog.luqmansen.me/my-first-docker-run/) about almost same problem, now i try to do that on linux.
+So, i learning docker recently, and i notice that docker took quite a lot of space on my drive for just random image that i pull from dockerhub (yes, just for curiosity). I just being considerate my tiny weeny ssd write cycle. After my previous post on [here](https://luqmansen.github.io/my-first-docker-run/) about almost same problem, now i try to do that on linux.
 
 After struggling with this problem for 2 days and much stack overflow later, the best solution (or most recommended) was
 

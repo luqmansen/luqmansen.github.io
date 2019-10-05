@@ -3,8 +3,7 @@ layout: post
 title: Ngapain sih nge-blog ?
 date: '2019-08-07 10:08:11'
 image: assets/images/photo-1486312338219-ce68d2c6f44d.jpg
-tags:
-- writing
+categories: [writing]
 ---
 
 Halo semua !!

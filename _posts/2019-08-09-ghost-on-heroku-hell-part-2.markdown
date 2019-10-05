@@ -3,9 +3,7 @@ layout: post
 title: Ghost-on-heroku Hell (part 2)
 date: '2019-08-09 04:06:47'
 image: assets/images/hGPgUd4.jpg
-tags:
-- devops
-- heroku
+categories: [devops,heroku]
 ---
 
 Soo, after the last time the pre-implemented imgur storage adapter failed, then next i tried the google drive api method.

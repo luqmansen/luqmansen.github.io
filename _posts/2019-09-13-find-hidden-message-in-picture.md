@@ -16,7 +16,7 @@ Basically, some strings are hidden inside an image, this is called steganography
 Basically, an image is a binary file. now we just have to managed how to read a binary file.There are 3 ways i managed to do this.
 
 ### 1. Use binwalk
-This is probably overkill, but this is what solve my problem for first time
+This is probably overkill, but this is what solve my problem for first time and my friend recommend me to use this
 
 Install binwalk
 ~~~language-bash

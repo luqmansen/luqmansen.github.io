@@ -3,8 +3,7 @@ layout: post
 title: Ikut Program Kominfo
 image: assets/images/kominfo-digitalent-pengumuman-balitbang-sdm.jpg
 date: '2019-08-24 13:39:24'
-tags:
-- story
+categories: [story]
 ---
 
 Disclaimer : Cerita ini adalah dari pengamatan saya sendiri dan cerita asisten-asisten program ini. Jadi kalau ada salah kata mohon maaf :D

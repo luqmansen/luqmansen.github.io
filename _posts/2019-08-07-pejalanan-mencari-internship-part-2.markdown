@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pejalanan Mencari Internship (part 2)
-date: '2019-05-15 07:04:00'
+date: '2019-08-07 07:04:00'
 image: assets/images/0_eU1r32QSMgpKEz95.jpg
 categories: [internship]
 ---

@@ -6,7 +6,7 @@ image: assets/images/Golang.png
 categories: [programming,golang]
 ---
 
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-5.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/315px-Hash_table_3_1_1_0_1_0_0_SP.svg.png" class="kg-image"><figcaption>sauce : wikipedia</figcaption></figure><!--kg-card-end: image-->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-5.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/315px-Hash_table_3_1_1_0_1_0_0_SP.svg.png" class="kg-image"><figcaption></figcaption></figure><!--kg-card-end: image-->
 
 So, recently i getting serious on learning go language. I using some course that intended for someone who new to programming, so I mostly just fast forward the videos, until i got to material where i should implement hash table. This part was actually part of map data structure part.
 

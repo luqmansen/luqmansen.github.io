@@ -11,6 +11,7 @@ License: https://www.wowthemes.net/freebies-license/
     padding: 1rem 0rem;
 }
 
+
 a {
     color: #00ab6b;
     transition: all 0.2s;
@@ -720,7 +721,14 @@ h6 {
 }
 
 img {
-    max-width: 100%;
+    width:80%;
+    height: 80%;
+    max-height: 500px;
+    max-width:500px;
+}
+
+figcaption {
+    font-size: 13px !important;
 }
 
 .bottompagination span.navigation {

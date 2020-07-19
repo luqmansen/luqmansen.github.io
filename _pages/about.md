@@ -9,6 +9,6 @@ Hello, this is my personal site, feel free to contact me if you need any further
 
 <a href="mailto:luqmansn@student.ce.undip.ac.id" target="_blank">Email</a>
 <br>
-<a href="https://www.linked.in/in/luqmansen/" target="_blank">LinkeIn</a>
+<a href="https://www.linkedin.com/in/luqmansen/" target="_blank">LinkeIn</a>
 <br>
 <a href="https://www.github.com/luqmansen/" target="_blank">Github</a>

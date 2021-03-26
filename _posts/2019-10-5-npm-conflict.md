@@ -22,7 +22,7 @@ Solution ? I tried to install that specific version that need via apt
 ~~~.language-bash
 $sudo apt install libssl1.0.0-dev 
 ~~~
-Aaand, yea it's installed. and now when i do aptitude, i'm able to install npm
+Aaand, yea it's installed. and now when I do aptitude, i'm able to install npm
 
 <!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/learn-travis-ci/dependenshit.png" class="kg-image"></figure><!--kg-card-end: image-->
 

@@ -12,7 +12,7 @@ I have written this post on my note since 23 May 2020, but just got free time to
 
 <!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/how-far-part1/last-commit.png" class="kg-image"><figcaption>Last git commit on this blog </figcaption></figure><!--kg-card-end: image-->
 
-Actually, one of the reasons why I want to start blogging again is because my new partner at my workplace (yes, I'm working right now, I'll make new post later). So I read her [blog](https://rulisastra.medium.com/) and this is the same thing I've always tought when I wrote something, 
+Actually, one of the reasons why I want to start blogging again is because my training partner at my workplace (yes, I'm working right now, I'll make new post later). So I read her [blog](https://rulisastra.medium.com/) and this is the same thing I've always tought when I write something, 
 
 >I can’t control or satisfied them all. So instead of worrying, I decided to write anything anywhere in hope that I can leave my tracks in this life before they were long forgotten.
 

@@ -2,7 +2,6 @@
 
 Personal Blog
 
-visit me at [luqmansen.me](luqmansen.me)
 
 Install jekyll
 ```

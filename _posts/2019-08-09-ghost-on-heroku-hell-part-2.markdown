@@ -81,5 +81,5 @@ What to do next ?
 
 Well, that's the story of this blog, See ya !!!
 
-In case you haven't read the first part, here [https://blog.luqmansen.me/ghost-on-heroku-hell-part-1/](https://blog.luqmansen.me/ghost-on-heroku-hell-part-1/)
+In case you haven't read the first part, here [https://luqmansen.github.io/ghost-on-heroku-hell-part-1/](https://luqmansen.github.io/ghost-on-heroku-hell-part-1/)
 

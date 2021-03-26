@@ -69,5 +69,5 @@ No idea, i just doing quick research of how to debug this deployment, and i knew
 
 This journey haven't finished, see ya in the next post....
 
-Update part 2 : [https://blog.luqmansen.me/ghost-on-heroku-hell-part-2/](https://blog.luqmansen.me/ghost-on-heroku-hell-part-2/)
+Update part 2 : [https://luqmansen.github.io/ghost-on-heroku-hell-part-2/](https://luqmansen.github.io/ghost-on-heroku-hell-part-2/)
 

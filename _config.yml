@@ -1,7 +1,7 @@
 # Site
 name: "Luqmansen's Blog"
 title: "Luqmansen's Blog"
-description: "Random thoughts and Some Computer Stuff"
+description: "Random thoughts and some computer stuff"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: ''
@@ -19,7 +19,7 @@ authors:
     gravatar: e56154546cf4be74e393c62d1ae9f9d4
     email: luqmansen@gmail.com
     web: https://luqmansen.github.io
-    description: "A normal guy who loves programming"
+    description: "A normal person, trying to love what he's doing"
   
 
 # Plugins

@@ -10,7 +10,7 @@ This is typical npm flexing,
 
 ~~~.language-bash
 The following packages have unmet dependencies:
- npm : Depends: some-library (>= 0.69.9) but it is not going to be installed because 𝗙𝗨𝗖* 𝗬𝗢𝗨, thats why
+ npm : Depends: some-library (>= 0.69.9) but it is not going to be installed because 𝗙 𝗬𝗢𝗨, thats why
 E: Unable to correct problems, you have held broken packages.
 ~~~
 
@@ -32,8 +32,8 @@ But
 
 When apt downgrading stuff, it also uninstall all stuff that depends on the thing that i downgraded. I haven't search this on internet, but perhaps it's a mecahnism to prevent the app from broken. Whats make it suck ? It uninstall my WHOLE Ros and all it's dependencys. I haven't checked for another things that also got uninstalled, but yea that suck.
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/learn-travis-ci/ros-removed.png" class="kg-image"></figure><!--kg-card-end: image-->
-
  Yea npm is very cool.
 
+## Update March 2021
 
+Lmao, I laugh out loud when reading this cringy post now, but yeah, npm all stuff is still suck lmao. But I'm good with js right now. I code some react js and react native stuff, and that's cool. But considering that complexity of managing state on react, and my friend told me to use another library to manage that, I don't wanna do this anymore.

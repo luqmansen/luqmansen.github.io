@@ -10,7 +10,7 @@ Disclaimer : Cerita ini adalah dari pengamatan saya sendiri dan cerita asisten-a
 
 Jadi jadi, ceritanya kominfo mau bantu masyarakat indo nih, mereka ngadain program pelatihan yang keren banget pokoknya (harusnya). Namanya Digital Talent scholarship.
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-5.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/kominfo-talenta-digital-transformasi-digital-litbang-sdm.jpg" class="kg-image"><figcaption>gampangnya, ini adalah program sertifikasi gratis, keren ga tuh ?</figcaption></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/kominfo-talenta-digital-transformasi-digital-litbang-sdm.jpg" class="kg-image"><figcaption>gampangnya, ini adalah program sertifikasi gratis, keren ga tuh ?</figcaption></figure><!--kg-card-end: image-->
 
 Aku pengen coba bahas salah satu cabang programnya, yaitu FGA atau fresh graduate academy. Seperti namanya, program ini menyasar para fresh graduate atau mahasiswa tingkat akhir. &nbsp;tema tema diposter diatas itu, ada cyber security, cloud computing, big data, AI, dan digital skill itu, semuanya resmi dari lembaga lembaga sertifikasi mereka, macem AWS, Cisco, Microsoft.
 
@@ -18,7 +18,7 @@ Jadi ya setelah program ini selesai, para pesertanya dapat sertifikasi layaknya 
 
 Walahpun memang ada beberapa &nbsp;peserta memang dari luar daerah, tapi dilapangan, kalo boleh saya taksir, 60%+ itu peserta DTS yang diadain oleh jurusan saya isinya senior saya semua angkatan 2015. Yaa mereka mayoritas sih orang semarang, dan kalaupun bukan orang semarang, mereka pasti sudah berdomisili aka. nge-kost di Semarang, artinya uangya ya jadi free real estate
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://res-5.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/maxresdefault.jpg" class="kg-image"></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/maxresdefault.jpg" class="kg-image"></figure><!--kg-card-end: image-->
 
 Lalu bagaimana lainya ? Proses belajarnya menggunakan modul dari kominfo, yang mana modulnya banyak bagian nge-labnya aka. praktek, tapi ternyata banyak banget contoh dari modul kominfo itu yang ga jalan, alias pas di run di console (contohnya materi big data, yang lain gatau) pada error. Error ini sendiri temen saya yang jadi asisten FGA ini dan kalau asistenya bener, dia bakal coba dulu semua yang ada di modul, lalu pastiin kalo besok pas pesertanya nyoba pada bisa. Tapi eh tapi, ya tidak semua asisten jadi asisten yang baik.
 

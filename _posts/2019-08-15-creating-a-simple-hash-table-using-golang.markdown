@@ -6,7 +6,7 @@ image: assets/images/Golang.png
 categories: [programming,golang]
 ---
 
-<figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-5.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/315px-Hash_table_3_1_1_0_1_0_0_SP.svg.png" class="kg-image"><figcaption></figcaption></figure><!--kg-card-end: image-->
+<figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/315px-Hash_table_3_1_1_0_1_0_0_SP.svg.png" class="kg-image"><figcaption></figcaption></figure><!--kg-card-end: image-->
 
 So, recently i getting serious on learning go language. I using some course that intended for someone who new to programming, so I mostly just fast forward the videos, until i got to material where i should implement hash table. This part was actually part of map data structure part.
 
@@ -172,7 +172,7 @@ this statement is going to append each word to an specific bucket in which the n
 
 At the end, just to make sure our bucket working, lets just print the number of word stored in each bucket. Here is the result
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://res-2.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/go-hash-table.png" class="kg-image"></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/go-hash-table.png" class="kg-image"></figure><!--kg-card-end: image-->
 
 Pretty cool right ? The highest magnitude was 32.000-ish and the smaller around 11.000-ish so the ratio was 3:1, not too bad. The has algorithm can be more optimized for more even distribution.
 
@@ -180,5 +180,7 @@ Here is the full code
 
 <!--kg-card-begin: html--><script src="https://gist.github.com/luqmansen/b8337c23184ecc64624764990d4e099e.js"></script><!--kg-card-end: html-->
 
-Well done kiddo, see you in next article, keep studying !
+disclaimer: The code is part of Golang course from Tod McLeod, you can check it [here](https://www.udemy.com/course/learn-how-to-code/)
+
+Well done, see you in next article, keep studying !
 

@@ -19,6 +19,7 @@ So I tried to memorize how things going from my timeline. This will start from t
 - For the first time, being a [Gemastik](https://gemastik13.telkomuniversity.ac.id/)'s Finalist (2020)
 - I signed up for a community service program (2020-2021)
 - I actually working my microservice project, which previously was [project ambis](https://luqmansen.github.io/project-ambis-started/) until it became (an abandoned) [project hanako](https://github.com/luqmansen/hanako/) until now I working on [Gosty](https://github.com/luqmansen/gosty/) as my final thesis (Present)
+- and because of that, I had a chance (and I have to) learn Kubernetes intensively
 - I got a job (still being a trainee actually) as a Backend Golang engineer, something that I used to (and still) wanted to be, wohooo (Present)
 
 ---

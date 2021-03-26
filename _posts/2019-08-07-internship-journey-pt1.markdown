@@ -9,11 +9,13 @@ categories: [internship]
 
 Magang / kerja praktek di beberapa universitas merupakan hal yang menjadi mata kuliah wajib. Buat sebagian mahasiswa, magang ini bisa jadi cuma sekedar untuk memenuhi sks mata kuliah. Namun tidak sedikit juga yang menganggap bahwa magang ini menjadi salah satu kesempatan buat mempraktekan apa yang kalian pelajari di bangku perkuliahan. Disini, saya termasuk salah satu yang berpikiran demikian. Pernah liat meme dibawah ini kan
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://res-4.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/1_0iElB4bkXxKYd5h2IYu0yA.png" class="kg-image" alt="1_0iElB4bkXxKYd5h2IYu0yA"></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/first-intern/1_0iElB4bkXxKYd5h2IYu0yA.png" class="kg-image"><figcaption>Paradox</figcaption></figure><!--kg-card-end: image-->>
+
 
 Jawaban atas pernyataan diatas adalah
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://res-3.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/0_eU1r32QSMgpKEz95.jpg" class="kg-image"></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/first-intern/0_eU1r32QSMgpKEz95.jpg" class="kg-image"><figcaption>Hehehe</figcaption></figure><!--kg-card-end: image-->>
+
 
 Kadang recruitment emang minta minimum requirement yang ga masuk akal. Kaya fresh grad tapi harus minimum 2 experience. Gimana dong ? well, ga sepenuhnya ga masuk akal sih, salah satu caranya ya dengan internship dong!
 
@@ -22,7 +24,9 @@ Sebagai mahasiswa, terutama kalo di bidang IT, yang dari pengalaman saya sangat 
 Disini aku bakal sedikit cerita tentang pengalaman magang dan usaha dalam mencari tempat magang.
 
 # **Magang Pertama - web developer intern**
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://res-3.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/uccp.png" class="kg-image"></figure><!--kg-card-end: image-->
+
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/first-intern/uccp.png" class="kg-image"><figcaption>UCCP Logo</figcaption></figure><!--kg-card-end: image-->>
+
 
 Pertama kali banget magang as web developer di PT. UCCPrima. Ini adalah perusahaan konsultan IT milik Undip. Jadi singkatnya, Undip itu PTN-BH dan salah satu implikasinya adalah mereka bisa punya suatu badan usaha yang berada dibawah naungan undip ini.
 

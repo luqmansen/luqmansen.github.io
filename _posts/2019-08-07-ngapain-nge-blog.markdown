@@ -10,7 +10,7 @@ Halo semua !!
 
 “Kenapa sih nge-blog? Emang masih jaman ya? Emang masih ada yang baca ya?” Buat yang kepikiran seperti itu, mungkin sedikit tulisan di bawah bisa jadi pencerahan.
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://res-3.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/photo-1486312338219-ce68d2c6f44d.jpg" class="kg-image" alt="apple"></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/photo-1486312338219-ce68d2c6f44d.jpg" class="kg-image" alt="apple"></figure><!--kg-card-end: image-->
 
 Posting pertama blog ini mungkin buat sedikit pemanasan. Blog ini akan jadi blog pribadi aku, catatan jurnal harian, tempat menuliskan ide dan gagasan yang biasanya mungkin hanya sekedar menjadi angin lewat di kepala kita. Sharing ilmu yang akan dan sedang saya pelajari, sharing project yang saya kerjakan, hmm apa lagi yaa ?
 

@@ -12,7 +12,7 @@ Okay, so here's the thing, for the past 3 days, i have been working for my perso
 
 So, i started from [this](https://github.com/cobyism/ghost-on-heroku)repository, it got over 600 star and 400 fork, so this should be a good sign i guess. I open the page. So, there is lot of read me there, meh, who still read the read me ? Lets just fire it up
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-3.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/silly-me.png" class="kg-image"><figcaption>things i should know ? I don't think i need to know anything, silly me</figcaption></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/silly-me.png" class="kg-image"><figcaption>things i should know ? I don't think i need to know anything, silly me</figcaption></figure><!--kg-card-end: image-->
 
 So, after the first deployment, i still not realize about that. Probably because i've been writing some blog post since then, so my blog is always up.
 
@@ -28,13 +28,13 @@ Then, somehow, i think that upgrading my ghost to ghost 2.0 was a good idea, yea
 
 Then i started to reading something about [ghost storage adapter](https://ghost.org/docs/concepts/storage-adapters/) and there this things called [ghost-github](https://github.com/ifvictr/ghost-github).
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-5.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/ghost-gitub.png" class="kg-image"><figcaption>ghost-github</figcaption></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/ghost-gitub.png" class="kg-image"><figcaption>ghost-github</figcaption></figure><!--kg-card-end: image-->
 
 It's a storage adapter for ghost, especially if you deploy it on heroku (or other platform that has same file system). It's basically going to make the assets of the ghost blog saved to your github account. After reading carefully, i still have no idea of how i should implement this.
 
 Then i did some research on google, and i met [this one](https://github.com/tonyrewin/ghost-on-heroku).
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://res-4.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/tonyerwin.png" class="kg-image"></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/tonyerwin.png" class="kg-image"></figure><!--kg-card-end: image-->
 
 This is a ghost-on-heroku forked from original cobyism, but it already implemented that ghost-github storage adapter for us. Just launch the deploy and i thought i good to go. So I take down my current blog, and confidently delete the app from heroku because i will use the same app name for this one. Deploy it. and it is done.
 
@@ -50,7 +50,7 @@ Then i did more research on google, I found another interesting github page, [th
 
 Then i give it a shot, &nbsp;and somehow i knew this is going to be bad, but i tried anyway, and then this is happen
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-4.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/heroku-app-error.png" class="kg-image"><figcaption>huh ?</figcaption></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/heroku-app-error.png" class="kg-image"><figcaption>huh ?</figcaption></figure><!--kg-card-end: image-->
 
 I didn't modified anything, i just click the deploy button from the readme page. _"Okay then, try use heroku logs --tail, what it said ?"_
 

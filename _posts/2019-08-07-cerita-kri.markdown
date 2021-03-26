@@ -10,7 +10,8 @@ Jadi, kemarin mei 2019 aku dan tim EWS Bascorro Undip baru saja ikut Kontes Robo
 
 Saat running test hari pertama perlombaan, kami mulai dapat gambaran gimana robot-robot tim lain. Mengingat tim kami juga masih ada beberapa kendala teknis, malamnya pun kami begadang di hotel memperbaiki beberapa masalah yang masih sering muncul.
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-5.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/KRI-Regional-3-2019_190807_0004.jpg" class="kg-image" alt="Hotel"><figcaption>Hotel pun Kami Jadikan Workshop robot</figcaption></figure><!--kg-card-end: image-->
+
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/KRI-Regional-3-2019_190807_0004.jpg" class="kg-image"><figcaption>Hotel pun Kami Jadikan Workshop robot</figcaption></figure><!--kg-card-end: image-->>
 
 Matahari pun mulai terbit, kami yang hanya tidur beberapa jam harus segera berangkat ke venue. Singkat cerita, tim kami lolos ke perempat final, lumayan kaget juga sebenernya, tapi kami tetep lanjutin hingga akhir. Lalu diperempat final ini, kami ketemu tim UNY, ya karena tim mereka sangat superior dari tim kami, ya wajar sih hasilnya kalo kalah (pembelaan sih ceritanya).
 
@@ -18,11 +19,14 @@ Oke, walau kalah di perempat final, tim kami belum selesai, karena masih ada per
 
 Di perebutan juara 3 ini, kami ketemu tim UGM, tim yang juga notabene pemain lama. Dari awal pertandingan tim kami dan tim UGM masih banyak masalah juga. Akhirnya hasil pertandingan ditentukan dengan adu pinalti. Daaan, ya memang sudah takdir juga mungkin, tim kami kalah 1-0 dari UGM saat adu pinalti!
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-2.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/robot-ugm.png" class="kg-image"><figcaption>Robot milik UGM</figcaption></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/robot-ugm.png" class="kg-image"><figcaption>Robot milik UGM</figcaption></figure><!--kg-card-end: image-->
+
 
 Akhirnya kami pun finish di urutan ke-empat, lumayan senang juga karena pertama kali sejak tim EWS bascorro dibuat tahun 2016 dan sempat vakum satu tahun, ini pertama kali tim EWS Bascorro dapat podium. &nbsp;!
 
-<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-2.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/KRI-Regional-3-2019_190807_0031.jpg" class="kg-image" alt="apple"><figcaption>Podium pertama buat tim, first time ever</figcaption></figure><!--kg-card-end: image--><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://res-4.cloudinary.com/hmfrvrfdc/image/upload/q_auto/v1/ghost-blog-images/KRI-Regional-3-2019_190807_0020.jpg" class="kg-image" alt="piala"><figcaption>Walau cuma satu. pulang harus tetep bawa piala dong..</figcaption></figure><!--kg-card-end: image-->
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/KRI-Regional-3-2019_190807_0031.jpg" class="kg-image" alt="apple"><figcaption>Podium pertama buat tim, first time ever</figcaption></figure>
+
+<!--kg-card-end: image--><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="/assets/images/KRI-Regional-3-2019_190807_0020.jpg" class="kg-image" alt="piala"><figcaption>Walau cuma satu. pulang harus tetep bawa piala dong..</figcaption></figure><!--kg-card-end: image-->
 ### Kelanjutan
 
 Jadi setelah ditunggu-tunggu, pertengahan bulan juli, kami pun dapat pengumuman kalau tim kami lolos nasional :D

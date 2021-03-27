@@ -3,7 +3,7 @@ layout: post
 title: Perjalanan Mencari Internship (part 3)
 date: '2019-08-07 14:58:39'
 image: assets/images/0_Rf25Sq12FbY2pXbD.jpg
-categories: [internship,magang]
+categories: [internship]
 ---
 
 Setelah kemarin sudah mempersiapkan resume, sekarang siap coba coba apply dong!  

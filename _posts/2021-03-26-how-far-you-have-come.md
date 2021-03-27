@@ -12,12 +12,12 @@ I have written this post on my note since 23 May 2020, but just got free time to
 
 <!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/how-far-part1/last-commit.png" class="kg-image"><figcaption>Last git commit on this blog </figcaption></figure><!--kg-card-end: image-->
 
-Actually, one of the reasons why I want to start blogging again is because my training partner at my workplace (yes, I'm working right now, I'll make new post later). So I read her [blog](https://rulisastra.medium.com/) and this is the same thing I've always tought when I write something, 
+Actually, one of the reasons why I want to start blogging again is because my training partner at my workplace (yes, I'm working right now, I'll make new post later). So I read her [blog](https://rulisastra.medium.com/) and I read the same reason why I started this blog in the first place,
 
->I can’t control or satisfied them all. So instead of worrying, I decided to write anything anywhere in hope that I can leave my tracks in this life before they were long forgotten.
+>....I can’t control or satisfied them all. So instead of worrying, I decided to write anything anywhere in hope that I can leave my tracks in this life before they were long forgotten....
 
 
-This words is kinda motivate me again, soooo yeah, here I am. After this sentence is the actual post that I wrote back in May 2020, enjoy!
+This words is kinda motivate me again. I really wants to have something I can read or show to my grandkid someday, soooo yeah, here I am. After this sentence is the actual post that I wrote back in May 2020, enjoy!
 
 ---
 I think I want to write this format at least once a year, might twice idk. So, this is like what the title said, I want recap what I've done, or to be specific, achieved, for last year. 

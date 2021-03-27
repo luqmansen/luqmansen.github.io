@@ -6,9 +6,9 @@ date: '2019-11-22 17:41:00'
 categories: [competition, hackathon]
 ---
 
-Hello, long time no see ! It's been a quite a while since last time write a post to this blog. I've been very busy with college stuff, lab report, internship, and yeah, at the peak of all that, i decided to quit for a while (and add more stress  ._.) to join my first ever hackathon, wohoooo
+Hello, long time no see ! It's been a quite a while since last time write a post to this blog. I've been very busy with college stuff, lab report, internship, and yeah, at the peak of all that, I decided to quit for a while (and add more stress  ._.) to join my first ever hackathon, wohoooo
 
-It started in the middle of september, my friend ask me to star a team and join a hackathon competition, well as a yes man, i agreed immediately. Then, after submitting abstract, then (unsurprisingly) we going to next phase, which submitting a hackathon proposal. This process while not that hard, but for me who not kind of people that like to write formal (quite scientifically) writing, but i have to do that. Then long story short, at 10 November, the announcement come, and we managed to be 1 of 10 finalist, wohooo, we go to Bandung !
+It started in the middle of september, my friend ask me to star a team and join a hackathon competition, well as a yes man, I agreed immediately. Then, after submitting abstract, then (unsurprisingly) we going to next phase, which submitting a hackathon proposal. This process while not that hard, but for me who not kind of people that like to write formal (quite scientifically) writing, but i have to do that. Then long story short, at 10 November, the announcement come, and we managed to be 1 of 10 finalist, wohooo, we go to Bandung!
 
 <!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/first-hackathon/finalist.png" class="kg-image"><figcaption>Leskantara ftw</figcaption></figure><!--kg-card-end: image-->>
 

@@ -14,7 +14,7 @@ Kalo kata saudaraku yang merupakan perokok aktif, salah satu cara buat seorang p
 
 Mungkin metode ini bisa dibuat contoh buatku yang pengen bikin public commitment saat ini. Walaupun aku ga ngomong ke orang-orang secara langsung, tapi post ini juga salah satu bentuk motivasi yang mengikatku dan salalu ngingetin aku sama target-targetku.
 
-Kedepanya, target aku bakal aku list disini, mulai dari target lifetime, hingga target jangka pendek. Motivasi ini dari Thomas Frank, author dari sebuah [website dia](collegeinfogeek.com) yang bikin sebuah sebuah impossible &nbsp;yang keren banget sih. Dia bikin target dari fitness, habit. skills, dan beberapa poin lagi. Dia juga nulis secara spesifik dari tiap poin di target-target dia. Boleh liat [disini](https://collegeinfogeek.com/about/meet-the-author/my-impossible-list/) untuk lebih lengkapnya.
+Kedepanya, target aku bakal aku list disini, mulai dari target lifetime, hingga target jangka pendek. Motivasi ini dari Thomas Frank, author dari sebuah [website dia](collegeinfogeek.com) yang bikin sebuah sebuah impossible list &nbsp;yang keren banget sih. Dia bikin target dari fitness, habit. skills, dan beberapa poin lagi. Dia juga nulis secara spesifik dari tiap poin di target-target dia. Boleh liat [disini](https://collegeinfogeek.com/about/meet-the-author/my-impossible-list/) untuk lebih lengkapnya.
 
 Okay mungkin ini sedikit brainstorming di malam ini, semoga bisa konsisten semoga menginspirasi kalian yang baca, see you !!!
 

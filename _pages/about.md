@@ -9,6 +9,8 @@ Greetings, this is my personal site, feel free to ping me if you need any furthe
 
 <a href="mailto:luqmansen@gmail.com" target="_blank">Email</a>
 <br>
-<a href="https://www.linkedin.com/in/luqmansen/" target="_blank">LinkeIn</a>
+<a href="https://www.linkedin.com/in/luqmansen/" target="_blank">LinkedIn</a>
 <br>
 <a href="https://www.github.com/luqmansen/" target="_blank">Github</a>
+<br>
+<a href="https://twitter.com/luqmansen_" target="_blank">Twitter</a>

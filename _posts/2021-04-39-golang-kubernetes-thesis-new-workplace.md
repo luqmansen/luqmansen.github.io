@@ -23,11 +23,12 @@ Moving on, what's about the Kubernetes? Yep, I also use that stack on my thesis,
 
 Next, is it about the new workplace, so far so good? perhaps. I am still not very used to work with people that I've physically never meet before, but I think that was a good exercise for me to get used to it. Fortunately, I met a really nice coworker, she's very open to me and asks a lot about stuff that she's working with. She's relatively new to this field, but I really like her enthusiasm. Also having small interaction make this remote working less boring.
 
+---
 I remember when I said I still want to be backend because I want to handle complex systems, with top-notch tech stack, well, here I am. Also, there is a lot of "actual" software engineering practice that I've never know before. My current target is making sense of the whole software engineering process in this organization, because I started to realize there are \*a lot\* of things that I don't know, and that's good, means I know that there are many things to learn ahead.
 
 <!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="/assets/images/go-k8s-workplace/twiter.png" class="kg-image"><figcaption>Old tweet</figcaption></figure><!--kg-card-end: image-->
 
 
-Other things that I saw is, like every other organization, they have a huge clusterfuck snowball of legacy code which I had a few tickets working in this service for the last 2 weeks. I saw most of the testing code here in my opinion isn't very best practice. Like, I have to wait for 26 minutes for the test to be done just to see that my test was failed is ridiculous. But the team that handles the service said that the development of this legacy code is being frozen. The team is currently trying to fix that, let us see how is it going to be.
+Other things that I notice on my new workplace, like every other organization, they have a huge clusterfuck snowball of legacy code which I had a few tickets working in this service for the last 2 weeks. I saw most of the testing code here in my opinion isn't very best practice. Like, I have to wait for 26 minutes for the test to be done just to see that my test was failed is ridiculous. But the team that handles the service said that the development of this legacy code is being frozen. The team is currently trying to fix that, let us see how is it going to be.
 
 That's all for this post, see you next time!!!

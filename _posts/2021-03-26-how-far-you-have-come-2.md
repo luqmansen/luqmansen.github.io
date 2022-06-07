@@ -12,8 +12,7 @@ This is the second part of my (self) appreciation post, as to how far I've been 
 So I tried to memorize how things going from my timeline. This will start from the last time I should have to post my first appreciation [post](https://luqmansen.github.io/how-far-you-have-come/). Here we go
 
 
-- I extend my internship until almost a year (Dec 2020 - Nov 2021), because of that
-- I've been financially independent since then
+- I extend my internship until almost a year (Dec 2020 - Nov 2021)
 - I got my second scholarship (2020)
 - For the second time, me and my uni robotics team going to the national level (2020)
 - For the first time, being a [Gemastik](https://gemastik13.telkomuniversity.ac.id/)'s Finalist (2020)

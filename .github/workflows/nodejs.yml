@@ -1,6 +1,9 @@
 name: Node.js Reference Test
 
 on:
+  schedule:
+  - cron: "0 23 * * *"
+
   push:
 
 jobs:

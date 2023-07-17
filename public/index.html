@@ -18,7 +18,19 @@
 <!-- Favicon -->
 
   <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text text-anchor=%22middle%22 dominant-baseline=%22middle%22 x=%2250%22 y=%2255%22 font-size=%2280%22&gt;👨🏻‍💻&lt;/text&gt;&lt;/svg&gt;">
-
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "9a35b0fb-8fb2-4a55-b327-092a3246e4a5",
+        safari_web_id: "web.onesignal.auto.092506a7-b452-4a06-a822-c1d343884087",
+        notifyButton: {
+          enable: true,
+        },
+      });
+    });
+  </script>
 <style>
   :root {
     font-size: 20px;

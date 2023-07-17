@@ -25,3 +25,4 @@ TODO.md
 # public/
 # cache/
 *.log
+public/.idea

@@ -1,4 +1,4 @@
-name: Node.js Reference Test
+name: Build Blog
 
 on:
   schedule:

@@ -3,9 +3,8 @@ name: Build Blog
 on:
   schedule:
   - cron: "0 23 * * *"
-
-  
   push:
+   - master
 
 jobs:
   build:

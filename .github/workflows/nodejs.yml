@@ -19,3 +19,14 @@ jobs:
           notablog generate .
         env:
           CI: true
+      - name: Configure Git
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+      - name: Commit build result
+        run: |
+          git add public/
+          git commit -m "Build blog"
+      - name: Push changes
+        run: |
+          git push origin HEAD:gh-pages

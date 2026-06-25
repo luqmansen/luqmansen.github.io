@@ -1,0 +1,42 @@
+---
+title: "How Far I've Come - First part"
+date: 2021-03-26
+tags:
+  - life-update
+---
+
+![[how-far-i-ve-come-first-part__Untitled.png]]
+
+I have written this post on my note since 23 May 2020, but just got free time to actually post this up until now. Since it’s almost a year since this was supposed to be posted, soon I’ll make part 2.
+
+![[how-far-i-ve-come-first-part__Untitled-1.png]]
+
+Last edited on google keep
+
+![[how-far-i-ve-come-first-part__Untitled-2.png]]
+
+Last commit on this blog
+
+Anyway, I think that I want to blog again after randomly surfing on twitter and read some devs blog. Lots of blogs that I visit is just personal blog and story about what stuff they’ve been tinkering with. Soo yeah, I came back here and I remember that I really wants to have something I can read or show to my grandkid someday. After this sentence is the actual post that I wrote back in May 2020, enjoy!
+
+---
+
+I think I want to write this format at least once a year, might twice idk. So, this is like what the title said, I want recap what I’ve done, or to be specific, achieved, for last year.
+
+But for this first time, instead I wanna to recap from the beginning of my journey as a student up until now. Some of this is, I actually really wanted to create its own post even though the event already way in the past, but whatever, I’ll do it someday. Anyway, let’s start
+
+- I got my first “real” internship and
+- How to do things on the production
+- For the first time, I participated in hackathons
+- I got my first scholarship (post coming soon)
+- I joined DTS scholarship season 2 (post coming soon)
+- My project ambis have actually started and now moving toward microservices post coming soon)
+- I learned JAVASCRIPT OMG CAN’T BELIEVED THIS and all npm stuff, and
+- I wrote my first time ever game ALSO ON JS and
+- I also learn Node js, ofc (all Js stuff post coming soon)
+- I got more advanced on setup CI/CD, continued from part 1 (post coming soon)
+- I migrated fully to linux
+- I migrate my blog to Jekyll
+- what else?
+
+That’s what I can think now. If I remember other things inside this timeline, I might update this list. A lot from that list deserved its own post, so until next time. See yaa

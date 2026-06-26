@@ -1,9 +1,4 @@
----
-title:
----
-
-
-I write about software, systems, and whatever I'm learning at the moment -- plus the occasional life update.
+Occasionally write about software, systems, life update, and whatever I'm learning at the moment
 
 ## Posts
 

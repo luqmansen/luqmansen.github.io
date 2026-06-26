@@ -1,5 +1,7 @@
 ---
 date: 2026-06-17
+tags:
+  - reflection
 ---
 I've been learning Rust on and off for the past few month. It was really hard for me to understand, why would people NOT do this
 ```rust

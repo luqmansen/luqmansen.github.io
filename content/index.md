@@ -1,8 +1,8 @@
 ---
-title: Luqman Nugroho
+title: luqmansen's blog
 ---
 
-I write about software, systems, and whatever I'm learning at the moment — plus the occasional life update.
+I write about software, systems, and whatever I'm learning at the moment -- plus the occasional life update.
 
 ## Posts
 
@@ -21,4 +21,4 @@ I write about software, systems, and whatever I'm learning at the moment — plu
 
 ---
 
-Rougher, unpolished notes live in [scratchpads](scratchpads/). Find me on [GitHub](https://github.com/luqmansen).
+Rougher, unpolished notes live in [scratchpads](scratchpads/). 

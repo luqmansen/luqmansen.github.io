@@ -1,6 +1,3 @@
----
-title: luqmansen's blog
----
 
 I write about software, systems, and whatever I'm learning at the moment -- plus the occasional life update.
 

@@ -1,23 +1,20 @@
+I learned tons of stuff as rust beginner here, from a simple concept such as idiomatic unwrap, up until esoteric use of rust specifically when you're writing storage system, eg: how to NOT sprinkling around `Arc<Mutex<T>>` and use proper data sharing method, like self-referential struct, GAT, HRTB, etc.
+
+Here is just random note I jot down during my learning. 
+
 
 *Idiomatic unwrap*
-```rust
-// bad
-if result.is_some(){
-	let data = result.unwrap();
-	return data
-}
-
-// good
-if let Some(val) = result {
-	return data
-}
-```
 
 The intuition would be: 
 - walrus operator (python) / go -style
 - use `let Some` when you care about the other arm. If you care about both cases, then you are supposed to use `match`.
 	```rust
-	// ❌ Clunky: The None arm does absolutely nothing but waste space
+	// bad
+	if result.is_some(){
+		let data = result.unwrap(); // double unwrap basically, 2 instruction
+		return data
+	}
+
 	match state.memtable.get(key) {
 	    Some(value) => {
 	        return Ok(Some(value).filter(|v| !v.is_empty()));
@@ -25,7 +22,6 @@ The intuition would be:
 	    None => {} // "Do nothing, just pass through"
 	}
 	
-	//  Clean: Expresses exactly the same intent with less noise
 	if let Some(value) = state.memtable.get(key) {
 	    return Ok(Some(value).filter(|v| !v.is_empty()));
 	}
@@ -41,7 +37,8 @@ Because the state.read is supposed to be used for interior mutability, meaning t
 >This is mainly for performance concern. Because when flushing happens (which can be slow), reader still can read the database.
 
 
-## [Test Your Understanding](https://skyzh.github.io/mini-lsm/week1-02-merge-iterator.html#test-your-understanding)
+This is the end of day 2 (merge iterator) section
+### [Test Your Understanding](https://skyzh.github.io/mini-lsm/week1-02-merge-iterator.html#test-your-understanding)
 
 > What is the time/space complexity of using your merge iterator?
 

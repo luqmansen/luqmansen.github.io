@@ -128,6 +128,8 @@ plugins:
     enabled: true
   - source: github:quartz-community/explorer
     enabled: true
+    options:
+      sortFn: "(a,b)=>{if(a.isFolder!==b.isFolder)return a.isFolder?-1:1;if(a.isFolder&&b.isFolder)return (a.displayName||'').localeCompare(b.displayName||'');if((a.slug||'').startsWith('posts/'))return (b.slugSegment||'').localeCompare(a.slugSegment||'',undefined,{numeric:true});return (a.displayName||'').localeCompare(b.displayName||'',undefined,{numeric:true,sensitivity:'base'});}"
     layout:
       position: left
       priority: 50

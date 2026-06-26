@@ -1,5 +1,6 @@
-[[2026-06-17]]
-
+---
+date: 2026-06-17
+---
 I've been learning Rust on and off for the past few month. It was really hard for me to understand, why would people NOT do this
 ```rust
 if variable.is_none() {
@@ -13,7 +14,7 @@ Because coming from Golang, or other higher level languages, I always thinking t
 
 Up until today, it's finally just clicked for me.  Early on when I read the Rust book? It was all just hand-waving.  Now the intuition just clicked for me, after these many weeks. 
 
-Now that I think about it, it was also like this when I was learning about programming language interface (eg: java, golang, etc). At that time, it was something that I just cannot understand exactly what's the point. Now, everything just clicked. 
+Now that I think about it, it was also like this when I was learning about the concept of `interface` (eg: java, golang). At that time, it was something that I just cannot understand exactly what's the point. Now, everything just clicked. 
 
 And today, I also start reading a book by Andy Groove "How Query Engines Work". Got a few pages in the beginning and then i stopped and it got me another thinking: "How can people understand all of these stuff?".
 

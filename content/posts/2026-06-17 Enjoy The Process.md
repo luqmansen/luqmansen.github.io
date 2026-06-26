@@ -1,4 +1,5 @@
 ---
+title: Enjoy The Process
 date: 2026-06-17
 tags:
   - reflection

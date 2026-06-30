@@ -34,33 +34,27 @@ The intuition would be:
 
 high level schema how each component is connected
 ```mermaid
----
-title: Animal example
----
-classDiagram
-    note "From Duck till Zebra"
-    Animal <|-- Duck
-    note for Duck "can fly<br>can swim<br>can dive<br>can help in debugging"
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-        +String beakColor
-        +swim()
-        +quack()
-    }
-    class Fish{
-        -int sizeInFeet
-        -canEat()
-    }
-    class Zebra{
-        +bool is_wild
-        +run()
-    }
 
+classDiagram
+    namespace Platform {
+        namespace Auth {
+            class UserService {
+                +login()
+                +logout()
+            }
+        }
+        namespace Data {
+            class Repository {
+                +find()
+                +save()
+            }
+        }
+        class Gateway {
+            +route()
+        }
+    }
+    Gateway --> UserService : delegates
+    Gateway --> Repository : delegates
 
 ```
 

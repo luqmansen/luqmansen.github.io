@@ -5,7 +5,7 @@ Here is just random note I jot down during my learning.
 
 ### Uncategorized
 
-*Idiomatic unwrap*
+- *Idiomatic unwrap*
 
 The intuition would be: 
 - walrus operator (python) / go -style
@@ -29,6 +29,10 @@ The intuition would be:
 	}
 	```
 
+
+- On edge-cases
+	this course setup makes me not thinking about edge-cases at all, because it gives me re-assurance that all edgecases are handled so that i can just focus on the main event. This question just struck me on w1d3 question asking what happen at the end of block ends and key  not found.
+- 
 
 ### Storage Design Abstraction
 

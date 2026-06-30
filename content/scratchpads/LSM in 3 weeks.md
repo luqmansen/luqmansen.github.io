@@ -45,11 +45,11 @@ classDiagram
     }
     class BlockBuilder {
     }
-    class SST {
+    class SsTableBuilder {
         +BlockBuilder
     }
     
-    SST --> BlockBuilder : writes blocks via
+    SsTableBuilder --> BlockBuilder : writes blocks via
     BlockBuilder --> Block: writes
 ```
 

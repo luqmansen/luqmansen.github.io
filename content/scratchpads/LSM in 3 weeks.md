@@ -32,30 +32,21 @@ The intuition would be:
 
 ### Storage Design Abstraction
 
-high level schema how each component is connected
+high level schema how each component is connected. Somewhat low level to get me easy overview of how things are connected
 ```mermaid
 
 classDiagram
-    namespace Platform {
-        namespace Auth {
-            class UserService {
-                +login()
-                +logout()
-            }
-        }
-        namespace Data {
-            class Repository {
-                +find()
-                +save()
-            }
-        }
-        class Gateway {
-            +route()
-        }
+    class Block {
+        +seek()
     }
-    Gateway --> UserService : delegates
-    Gateway --> Repository : delegates
-
+    class BlockBuilder {
+    }
+    class SST {
+        +BlockBuilder
+    }
+    
+    SST --> BlockBuilder : writes blocks via
+    BlockBuilder --> Block: writes
 ```
 
 

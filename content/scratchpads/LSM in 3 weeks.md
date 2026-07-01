@@ -88,6 +88,15 @@ Time -> for each Next():
 
 > Why do we need a self-referential structure for memtable iterator?
 
+Because our iterator buffer uses skipmap AND the cursor is an actual internal memory pointer to that skimap.
+For convenient, we want to store both together for easy API access
+Unfortunately, rust by default won't allow this because struct may be reallocated somewhere and the cursor pointer might moved, ended up pointing to a dangling pointer.
+
+So we're using this crate  to pin the struct location to memory.
+
+technically speaking, if we can somehow using a type of cursor that can be serialized, (eg: cursor for an array can be a simple index),
+we might not need this self-referential structure (like our block iterator, which use a plain offset start/end as the cursor iterator.)
+
 
 
 

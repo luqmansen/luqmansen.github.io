@@ -3,6 +3,9 @@ I learned tons of stuff as rust beginner here, from a simple concept such as idi
 
 Here is just random note I jot down during my learning. 
 
+## Observations
+
+
 ### Uncategorized
 
 - *Idiomatic unwrap*

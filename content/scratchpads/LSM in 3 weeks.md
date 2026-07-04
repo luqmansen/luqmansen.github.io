@@ -3,12 +3,49 @@ I learned tons of stuff as rust beginner here, from a simple concept such as idi
 
 Here is just random note I jot down during my learning. 
 
-## Observations
+### Observations
+- Because the way the course is designed with rigorous enough test, i didn't really put extra attention towards the edge-cases of my code
+- also, it has easily become "just do whatever i need to make the test pass" and didn't really look around the code, because of that
+- Sometimes I wasn't aware about the full structure of each component. For example, during SST section, i wasn't aware that `block_meta_offset` was part of the struct property and I had to needlessly read at the end of the file
+	```rust
+	    let start_offset = self.block_meta.get(block_idx).unwrap().offset;
+        let end_offset = {
+            match self.block_meta.get(block_idx + 1) {
+                Some(m) => m.offset as u32,
+                None => {
+                    // // last item, then read start of metadata section
+                    // let mut buff = vec![0u8; 4];
+                    // self.file
+                    //     .0
+                    //     .as_ref()
+                    //     .unwrap()
+                    //     .read_exact_at(&mut buff, self.file.1 - 4)?;
 
+                    // u32::from_be_bytes(buff.try_into().unwrap())
+                    //
+                    
+                    // correct version
+                    self.block_meta_offset as u32
+                }
+            }
+        };****
+	```
+	i definitely felt the smell coz my initial solution definitely a double disk seek. Thankfully it was being caught when I ask AI why the code feels dumb lol.
 
 ### Uncategorized
 
 - *Idiomatic unwrap*
+
+It was really hard for me to understand, why would people NOT do this
+```rust
+if variable.is_none() {
+	do_negative(varible.unwrap()); // basically double check :D
+}
+
+do_positive();
+```
+
+Because coming from Golang, or other higher level languages, I always thinking that this is the most natural way of doing thing. You figure out the negative space first, and check all condition 1-by-1.
 
 The intuition would be: 
 - walrus operator (python) / go -style

@@ -286,3 +286,6 @@ impl StorageIterator for HigherLevelIterator {
 
 This happens, for example in `SSTableIterator` -> `BlockIterator`, or `LSMIterator` -> `MergeIterator`
 Seeing this repetitive pattern sometimes makes me feel lost in this forest of indirection and missing the big picture. 
+
+
+Also, `next()` function is really 

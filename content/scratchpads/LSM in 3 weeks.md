@@ -240,3 +240,14 @@ I should minize disk read write
 So maybe batch larger write/read
 
 (will think more through. I'm interested to implement this as well)
+
+
+# Week 1 Day 4 - SSTable 
+
+[[2026-07-05]]
+
+reading this part, initially I wasn't really understand why SSTable has to accept individual key. I thought SSTable supposedly to just wrap memtable
+```rust
+impl SsTableBuilder {
+	pub fn add(&mut self, key: KeySlice, value: &[u8]) {
+```

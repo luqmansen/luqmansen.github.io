@@ -31,7 +31,6 @@ Here is just random note I jot down during my learning.
         };****
 	```
 	i definitely felt the smell coz my initial solution definitely a double disk seek. Thankfully it was being caught when I ask AI why the code feels dumb lol.
-
 ### Uncategorized
 
 - *Idiomatic unwrap*
@@ -72,7 +71,9 @@ The intuition would be:
 
 - On edge-cases
 	this course setup makes me not thinking about edge-cases at all, because it gives me re-assurance that all edgecases are handled so that i can just focus on the main event. This question just struck me on w1d3 question asking what happen at the end of block ends and key  not found.
-- 
+
+- `unwrap()` => `assert!()` 
+  I know unwrap everywhere basically is just lazy execuse. BUT i for development, it's a huge debugging helper. When I expect something to never fail but then it fail, i will get that error bubbled up early. Also later down the line, it's easier for me to assert the assumption on any part of the code.
 
 ### Storage Design Abstraction
 

@@ -251,4 +251,37 @@ Q: reading this part, initially I wasn't really understand why SSTable has to ac
 impl SsTableBuilder {
 	pub fn add(&mut self, key: KeySlice, value: &[u8]) {
 ```
- A: Aight, huge misunderstanding. Memtable is a skiplist,  in-memory formatted. SST is a binary encoded format. There's no direct translation. You gotta encode key by key manually.
+ A: Aight, huge misunderstanding. Memtable is a skiplist,  in-memory formatted. SST is a binary encoded format. There's no direct translation. You gotta encode key by key manually
+
+***
+
+There're tons of indirection methods in all of the iterator classes.
+
+A typical pattern
+
+```rust
+
+struct HigherLevelIterator {
+	inner_iter: LowerLevelIterator,
+}
+
+
+impl StorageIterator for HigherLevelIterator {
+	fn key() {
+		self.inner_iter.key()
+	}
+	fn value() {
+		self.inner_iter.value()
+	}
+	fn is_valid() {
+		self.inner_iter.is_valid()
+	}
+	
+	fn next() {
+		// this is usually where the meat of this iterator
+	}
+}
+```
+
+This happens, for example in SSTableIterator -> BlockIterator, and 
+Seeing this repetitive pattern sometimes makes me feel lost in this forest of indirection.

@@ -288,4 +288,15 @@ This happens, for example in `SSTableIterator` -> `BlockIterator`, or `LSMIterat
 Seeing this repetitive pattern sometimes makes me feel lost in this forest of indirection and missing the big picture. 
 
 
-Also, `next()` function is really 
+Also, `next()` convention is kind messing up with me a bit. I feel like the interface could slightly better
+
+why do we play guessing "if null this maybe be that" instead of returning strongly typed Enum, for example
+```rust
+enum IterNextReturn {
+ EndOfIteration
+ GenuineRuntimeError
+ GenuineIoError
+}
+```
+
+And the downstream's `next()` could handle that accordingly, instead of relying on the local state `{inner_iter}.is_valid()`

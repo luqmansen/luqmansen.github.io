@@ -246,8 +246,9 @@ So maybe batch larger write/read
 
 [[2026-07-05]]
 
-reading this part, initially I wasn't really understand why SSTable has to accept individual key. I thought SSTable supposedly to just wrap memtable
+Q: reading this part, initially I wasn't really understand why SSTable has to accept individual key. I thought SSTable supposedly to just wrap memtable
 ```rust
 impl SsTableBuilder {
 	pub fn add(&mut self, key: KeySlice, value: &[u8]) {
 ```
+ A: Aight, huge misunderstanding. Memtable is a skiplist,  in-memory formatted. SST is a binary encoded format. There's no direct translation. You gotta encode key by key manually.

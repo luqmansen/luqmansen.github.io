@@ -300,3 +300,21 @@ enum IterNextReturn {
 ```
 
 And the downstream's `next()` could handle that accordingly, instead of relying on the local state `{inner_iter}.is_valid()`
+
+>💡 Apparently this is already a common pattern in other storage engine like rocksdb, where end of iteration basically just return nothing. Error will be preserved when it's a genuine error, like IO error or Network error, etc.
+
+> Also why `next()` doesn't return the actual value instead of advancing the cursor is because the `key()` or `value()` might be called multiple time within the same iteration. Eg; for sorting in the merge iterator, internally the heap may call `key()`  multiple times during comparsion. 
+
+## [Test Your Understanding](https://skyzh.github.io/mini-lsm/week1-04-sst.html#test-your-understanding)
+
+Q: What is the time complexity of seeking a key in the SST?
+A: it's a binary search, should be O(log N)
+
+- Where does the cursor stop when you seek a non-existent key in your implementation?
+- Is it possible (or necessary) to do in-place updates of SST files?
+- An SST is usually large (i.e., 256MB). In this case, the cost of copying/expanding the `Vec` would be significant. Does your implementation allocate enough space for your SST builder in advance? How did you implement it?
+- Looking at the `moka` block cache, why does it return `Arc<Error>` instead of the original `Error`?
+- Does the usage of a block cache guarantee that there will be at most a fixed number of blocks in memory? For example, if you have a `moka` block cache of 4GB and block size of 4KB, will there be more than 4GB/4KB number of blocks in memory at the same time?
+- Is it possible to store columnar data (i.e., a table of 100 integer columns) in an LSM engine? Is the current SST format still a good choice?
+- Consider the case that the LSM engine is built on object store services (i.e., S3). How would you optimize/change the SST format/parameters and the block cache to make it suitable for such services?
+- For now, we load the index of all SSTs into the memory. Assume you have a 16GB memory reserved for the indexes, can you estimate the maximum size of the database your LSM system can support? (That’s why you need an index cache!)

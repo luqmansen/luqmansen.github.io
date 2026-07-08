@@ -141,14 +141,17 @@ we might not need this self-referential structure (like our block iterator, whic
 
 
 
-> If a key is removed (there is a delete tombstone), do you need to return it to the user? Where did you handle this logic?
+#to-answer-later 
+Q: If a key is removed (there is a delete tombstone), do you need to return it to the user? Where did you handle this logic?
 
 
+Q: If a key has multiple versions, will the user see all of them? Where did you handle this logic?
 
-- If a key has multiple versions, will the user see all of them? Where did you handle this logic?
-- If we want to get rid of self-referential structure and have a lifetime on the memtable iterator (i.e., `MemtableIterator<'a>`, where `'a` = memtable or `LsmStorageInner` lifetime), is it still possible to implement the `scan` functionality?
-- What happens if (1) we create an iterator on the skiplist memtable (2) someone inserts new keys into the memtable (3) will the iterator see the new key?
-- What happens if your key comparator cannot give the binary heap implementation a stable order?
+Q: If we want to get rid of self-referential structure and have a lifetime on the memtable iterator (i.e., `MemtableIterator<'a>`, where `'a` = memtable or `LsmStorageInner` lifetime), is it still possible to implement the `scan` functionality?
+
+Q: What happens if (1) we create an iterator on the skiplist memtable (2) someone inserts new keys into the memtable (3) will the iterator see the new key?
+
+Q: What happens if your key comparator cannot give the binary heap implementation a stable order?
 - Why do we need to ensure the merge iterator returns data in the iterator construction order?
 - Is it possible to implement a Rust-style iterator (i.e., `next(&self) -> (Key, Value)`) for LSM iterators? What are the pros/cons?
 - The scan interface is like `fn scan(&self, lower: Bound<&[u8]>, upper: Bound<&[u8]>)`. How to make this API compatible with Rust-style range (i.e., `key_a..key_b`)? If you implement this, try to pass a full range `..` to the interface and see what will happen.
@@ -331,7 +334,17 @@ A: (just a gist from reading the `try_get_with` docstring) Because moka guarante
 
 
 
-- Does the usage of a block cache guarantee that there will be at most a fixed number of blocks in memory? For example, if you have a `moka` block cache of 4GB and block size of 4KB, will there be more than 4GB/4KB number of blocks in memory at the same time?
-- Is it possible to store columnar data (i.e., a table of 100 integer columns) in an LSM engine? Is the current SST format still a good choice?
-- Consider the case that the LSM engine is built on object store services (i.e., S3). How would you optimize/change the SST format/parameters and the block cache to make it suitable for such services?
-- For now, we load the index of all SSTs into the memory. Assume you have a 16GB memory reserved for the indexes, can you estimate the maximum size of the database your LSM system can support? (That’s why you need an index cache!)
+Q: Does the usage of a block cache guarantee that there will be at most a fixed number of blocks in memory? For example, if you have a `moka` block cache of 4GB and block size of 4KB, will there be more than 4GB/4KB number of blocks in memory at the same time?
+A: To my understanding, yes. Since blockcache is a singleton shared across N SSTs, it should also automatically evict block when it's full
+
+
+Q: Is it possible to store columnar data (i.e., a table of 100 integer columns) in an LSM engine? Is the current SST format still a good choice?
+A: Should be yes if we replace the block encoding format to be more columnar friendly
+
+
+Q: Consider the case that the LSM engine is built on object store services (i.e., S3). How would you optimize/change the SST format/parameters and the block cache to make it suitable for such services?
+A: #to-answer-later 
+
+Q: For now, we load the index of all SSTs into the memory. Assume you have a 16GB memory reserved for the indexes, can you estimate 
+the maximum size of the database your LSM system can support? (That’s why you need an index cache!)
+A: #to-answer-later 

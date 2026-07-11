@@ -386,8 +386,27 @@ It's basically a way to express whether a range inclusive or exclusive, right. B
 
 A:  I don't think scanning 1TB would take an hour. Because on the surface, even on worst case scenario, the time complexity of scan is roughly `O(log N)` -> binary search
 
-Modern hardware (even disk platter), given the sequential nature of the scan itself, wouldn't take 1hr. Scanned key t 
+Modern hardware (even disk platter), given the sequential nature of the scan itself, wouldn't take 1hr. 
+(I'm too lazy to do the math, but let's see)
+
+1 TB = 2 ^ 40 bytes
+1 page read is 4KB => 2 ^ 12
+
+2^40 / 2^12 = 268.435.456 pages
+
+log2(268,435,456) = 28 pages => 112 kilobytes at most data being read
+
+crazy 
+
 
 > Another popular interface provided by some LSM-tree storage engines is multi-get (or vectored get). The user can pass a list of keys that they want to retrieve. The interface returns the value of each of the key. For example, `multi_get(vec!["a", "b", "c", "d"]) -> a=1,b=2,c=3,d=4`. Obviously, an easy implementation is to simply doing a single get for each of the key. How will you implement the multi-get interface, and what optimizations you can do to make it more efficient? (Hint: some operations during the get process will only need to be done once for all keys, and besides that, you can think of an improved disk I/O interface to better support this multi-get interface).
 
-A:
+I think can simply ride on the `scan` method and just accumulate the value along the way?
+
+Scan is, from my understanding already using as minimum IO as possible, because it reads per block chunk anyway. If we select 1 key vs 10 keys, over single block read, that is pretty much the same number of I/O
+
+
+## Week 1 Day 6 - Write Path
+[[2026-07-11]]
+
+

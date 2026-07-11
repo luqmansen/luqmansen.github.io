@@ -375,8 +375,6 @@ eg:
 
 Okay, i got this, understandable. Question: why? Why does it have to live as std instead of my own code?
 
-Apparently it's just a syntax sugar, that compiles into differnt concrete type
+Fuck, I got the idea like 90% of it (i will write it down in details later), but Rust (or AI explanation?) seems to make it more complicated that it's supposed to be. 
 
-eg:
-- `std::ops::Range<i32>` -> {start: 5, end: 10}
-- `std::ops::RangeTo<i32>` -> {end: 10}
+It's basically a way to express whether a range inclusive or exclusive, right. But the details is where things got more a bit too complicated for such a simple concept

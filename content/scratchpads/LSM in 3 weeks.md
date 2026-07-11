@@ -348,3 +348,35 @@ A: #to-answer-later
 Q: For now, we load the index of all SSTs into the memory. Assume you have a 16GB memory reserved for the indexes, can you estimate 
 the maximum size of the database your LSM system can support? (That’s why you need an index cache!)
 A: #to-answer-later 
+
+
+
+## Week 1 Day 5 - Read Path
+[[2026-07-11]]
+
+
+```rust
+type LsmIteratorInner = 
+	TwoMergeIterator<MergeIterator<MemTableIterator>, MergeIterator<SsTableIterator>>;
+```
+
+When I see something like this, I got scared sometimes. Mind you that this is just a shorthand to make things look neat and clean.
+
+```rust
+use std::ops::Bound;
+
+fn foo(start_bound: Bound<T>)
+```
+
+Bound type basically just represent one end point, inclusiec, exclusive, or unbounded.
+eg:
+- In range x >= 5 (included)
+- out range x >= 5 (excluded)
+
+Okay, i got this, understandable. Question: why? Why does it have to live as std instead of my own code?
+
+Apparently it's just a syntax sugar, that compiles into differnt concrete type
+
+eg:
+- `std::ops::Range<i32>` -> {start: 5, end: 10}
+- `std::ops::RangeTo<i32>` -> {end: 10}

@@ -378,3 +378,16 @@ Okay, i got this, understandable. Question: why? Why does it have to live as std
 Fuck, I got the idea like 90% of it (i will write it down in details later), but Rust (or AI explanation?) seems to make it more complicated that it's supposed to be. 
 
 It's basically a way to express whether a range inclusive or exclusive, right. But the details is where things got more a bit too complicated for such a simple concept
+
+
+## [Test Your Understanding](https://skyzh.github.io/mini-lsm/week1-05-read-path.html#test-your-understanding)
+
+> Consider the case that a user has an iterator that iterates the whole storage engine, and the storage engine is 1TB large, so that it takes ~1 hour to scan all the data. What would be the problems if the user does so? (This is a good question and we will ask it several times at different points of the course…)
+
+A:  I don't think scanning 1TB would take an hour. Because on the surface, even on worst case scenario, the time complexity of scan is roughly `O(log N)` -> binary search
+
+Modern hardware (even disk platter), given the sequential nature of the scan itself, wouldn't take 1hr. Scanned key t 
+
+> Another popular interface provided by some LSM-tree storage engines is multi-get (or vectored get). The user can pass a list of keys that they want to retrieve. The interface returns the value of each of the key. For example, `multi_get(vec!["a", "b", "c", "d"]) -> a=1,b=2,c=3,d=4`. Obviously, an easy implementation is to simply doing a single get for each of the key. How will you implement the multi-get interface, and what optimizations you can do to make it more efficient? (Hint: some operations during the get process will only need to be done once for all keys, and besides that, you can think of an improved disk I/O interface to better support this multi-get interface).
+
+A:

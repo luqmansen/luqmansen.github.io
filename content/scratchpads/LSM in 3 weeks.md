@@ -409,4 +409,32 @@ Scan is, from my understanding already using as minimum IO as possible, because 
 ## Week 1 Day 6 - Write Path
 [[2026-07-11]]
 
+## [Test Your Understanding](https://skyzh.github.io/mini-lsm/week1-06-write-path.html#test-your-understanding)
+
+> What happens if a user requests to delete a key twice?
+
+There should be just 2 tombstones I guess. I don't think we've implemented "check key exists before delete"
+but even if we do, checking if key already deleted before is kinda pointless, we'll just accept it anyway to avoid uncessary work
+
+> How much memory (or number of blocks) will be loaded into memory at the same time when the iterator is initialized?
+
+1 block size * number of iterator
+
+>Some crazy users want to _fork_ their LSM tree. They want to start the engine to ingest some data, and then fork it, so that they get two identical dataset and then operate on them separately. An easy but not efficient way to implement is to simply copy all SSTs and the in-memory structures to a new directory and start the engine. However, note that we never modify the on-disk files, and we can actually reuse the SST files from the parent engine. How do you think you can implement this fork functionality efficiently without copying data? (Check out [Neon Branching](https://neon.tech/docs/introduction/branching)).
+
+I think doable. First need to copy the in-memory skipmap 
+then we need fork checkpoint identifier for the new sst so that next flush will refer to new directory, while reading older sst still points to previous directory
+
+> Imagine you are building a multi-tenant LSM system where you host 10k databases on a single 128GB memory machine. The memtable size limit is set to 256MB. How much memory for memtable do you need for this setup?
+    - Obviously, you don’t have enough memory for all these memtables. Assume each user still has their own memtable, how can you design the memtable flush policy to make it work?
+
+Multi-tenant database (like neon) must make an assumption that not all tenants will be active at the same time. Let's give at most 30% (i think alr quite generous?). Given this assumption, we can make flush policy similar like popular cache eviction policy, like LRU, 
+- LRU -> recently accessed memtable will be kept in mem for a while, vice versa
+I think LRU is simple yet effective policy for this usecase. I imagine this will be fit for a serverless database where we can handle spiky workload during certain period. 
+LFU would be less appropriate here for a typical spiky workload, it can inflate access for certain memtbl and will be kept there even though traffic has went down
+
+>  cntd; Does it make sense to make all these users share the same memtable (i.e., by encoding a tenant ID as the key prefix)?
+
+I think it might be possible but it's going to be ugly. Tenant abstraction should not live at memtable lvl.
+I think tenancy should be put somewhere else above the memtable layer. Memtable layer should only care about the eviction policy, eg: track recency timestamp, etc
 

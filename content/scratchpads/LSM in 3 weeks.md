@@ -490,7 +490,42 @@ On LSM tree amplification
 Q: I thought the idea of compaction is to merge bunch of SSTs into fewer, bigger SSTs, but seems it's not only the case. There's also a case where num of sst in == sst out, but just there's no overlapping key ranges.
 Why don't we just have fewer bigger SSTs? 
 
-A: 
+A: I got completely wrong idea of compaction. 
+
+ I completely got L0 SST wrong. L0 SSTs are just a snapshot of memtable, which the range itself is completely random. They may just overlap each other. 
+ 
+One main point of compaction is kill this overlap, so that read only touches 1 SST at most (assuming point lookup, not a scan). Each compaction produces disjointed ranges. 
+
+Second, why not collapse L1 to a single `[a-z]` range? Because that will cause write-amp during compaction.
+
+Suppose during flush, you only want to flush range `d-f`, you only need to merge SST from that range instead of pulling the entire 10GB of `[a-z]` file.
+
+(pardon AI illustration, but i found this really helpful)
+
+```
+ONE GIANT SST:
+  L0 flush arrives: [d,f]   (2 MB)
+  L1:               [ a ........................ z ]   (10 GB, one file)
+
+  merge [d,f] in  ->  read 10 GB, rewrite 10 GB
+                      to absorb 2 MB of new data.        <-- catastrophic write amp
+
+
+BOUNDED, DISJOINT SSTs:
+  L0 flush arrives: [d,f]   (2 MB)
+  L1:  [a-c] [d-f] [g-i] [j-l] ... [x-z]   (each ~target_sst_size, disjoint)
+             ^^^^^
+  merge [d,f] in  ->  only [d-f] overlaps the incoming range.
+                      read ~2 MB + rewrite ~2 MB.
+                      every other SST: NOT touched. Just keep its
+                      pointer in the manifest unchanged.
+
+```
+
+
+1 Big SST file literally gives no read performance improvement whatsoever. 
+
+
 ## Week 2 Day 1
 
 

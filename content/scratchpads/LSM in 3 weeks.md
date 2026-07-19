@@ -487,8 +487,10 @@ https://skyzh.github.io/mini-lsm/week2-overview.html
 On LSM tree amplification
 ![sst-flush](https://skyzh.github.io/mini-lsm/lsm-tutorial/week2-00-two-extremes-2.svg)
 
-I thought the idea of compaction is to merge bunch of SSTs into fewer, bigger SSTs.
+Q: I thought the idea of compaction is to merge bunch of SSTs into fewer, bigger SSTs, but seems it's not only the case. There's also a case where num of sst in == sst out, but just there's no overlapping key ranges.
+Why don't we just have fewer bigger SSTs? 
 
+A: 
 ## Week 2 Day 1
 
 

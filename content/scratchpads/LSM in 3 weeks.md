@@ -95,12 +95,12 @@ classDiagram
 ```
 
 
-## Test your understanding
+# Test your understanding Sections
 
 This is from end section of each chapter. I'm rushing to finish this tutorial. 
 Not writing down all of my answers and just to get past this. Will revisit and writing down when reviewing 
 
-### Week 1 day 1 - Memtable
+## Week 1 day 1 - Memtable
 
 > Why do we need a combination of `state` and `state_lock`? Can we only use `state.read()` and `state.write()`?
 
@@ -110,7 +110,7 @@ Because the state.read is supposed to be used for interior mutability, meaning t
 >This is mainly for performance concern. Because when flushing happens (which can be slow), reader still can read the database.
 
 
-### Week 1 day 2 - Merge Iterator
+## Week 1 day 2 - Merge Iterator
 
 https://skyzh.github.io/mini-lsm/week1-02-merge-iterator.html#test-your-understanding)
 
@@ -246,7 +246,7 @@ So maybe batch larger write/read
 (will think more through. I'm interested to implement this as well)
 
 
-# Week 1 Day 4 - SSTable 
+## Week 1 Day 4 - SSTable 
 
 [[2026-07-05]]
 
@@ -479,4 +479,4 @@ This is will be similar to RLE, which might will have higher compression ratio b
 Sorry I shouldn't just mention this out of nowhere. SIMD indeed fumble on data chain dependency. But there's an easier reason here: you cannot do stuff like binary search within the block. 
 To use `seek_to_key`, you have to iterate over from the first key to that `K` key (which is my current implementation, that's why i thought of this earlier. I don't even utilize the `block.offsets` property at all :D)
 
-### Week 2 Day 1
+## Week 2 Day 1

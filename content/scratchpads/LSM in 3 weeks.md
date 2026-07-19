@@ -458,6 +458,9 @@ Wait. I don't even think you can do backward iterator natively. Because the way 
 
 > Can you use bloom filters on scan?
 
-It is. Same answer with the first?
+I don't thinks so. If scan span across multiple SSTs, the consumer might need everything avaiable within that range.
+Maybe if we want to provide more granular interface, like bulk key get, we can largely reduce the SSTs scan by checking everything at once, instead of letting the consumer using scan instead.
 
 > What might be the pros/cons of doing key-prefix encoding over adjacent keys instead of with the first key in the block?
+
+This is will be similar to RLE, which might will have higher compression ratio but you cannot do SIMD / paralleize the operation.

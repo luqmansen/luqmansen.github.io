@@ -452,12 +452,34 @@ An observation
 so that during iterator creation, it doesn't have to open buch of SSTs that aren't relevant (hence reducing I/O)
 
 🤖 AI Correction : I should not say "iterator", it's only used in `get` / point lookup :D
+
+---
 	
 > Consider the case that we need a backward iterator. Does our key compression affect backward iterators?
 
 Wait. I don't even think you can do backward iterator natively. Because the way data being laid out, backward iterator basically you need to traverse from first key to read the key/val len in order to proceed.
 
+🤖 AI Correction 
+Q2 — Backward iterator: ✗ premise is wrong
 
+Your claim "you'd have to traverse from the first key to read each len" ignores the **offset section**. A block ends with `offsets[]` — the byte start of *every* entry:
+
+```
+data:    [entry_0][entry_1][entry_2]...   offsets: [off_0, off_1, off_2, ...]
+                                                     random access to any entry
+```
+
+So you can jump straight to entry `i-1` via `offsets[i-1]`. No forward walk needed.
+
+And the real question — *does key compression hurt backward iteration?* **No, and here's why:** every key is compressed against the **first key of the block** (`overlap_len` counts shared prefix with `first_key`), which lives at the block start and the iterator holds in `first_key: KeyVec`. That anchor is available no matter which direction you move:
+
+```
+full_key(i) = first_key[..overlap_len_i] ++ key_rest_i    // needs ONLY first_key
+```
+
+Each entry decodes *independently*. Direction is irrelevant. (Whether a backward iterator is *implemented* is a separate matter — but compression isn't what blocks it.)
+
+---
 > Can you use bloom filters on scan?
 
 I don't thinks so. If scan span across multiple SSTs, the consumer might need everything avaiable within that range.

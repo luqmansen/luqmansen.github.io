@@ -450,6 +450,8 @@ An observation
 > How does the bloom filter help with the SST filtering process? What kind of information can it tell you about a key? (may not exist/may exist/must exist/must not exist)
 
 so that during iterator creation, it doesn't have to open buch of SSTs that aren't relevant (hence reducing I/O)
+
+🤖 AI Correction : I should not say "iterator", it's only used in `get` / point lookup :D
 	
 > Consider the case that we need a backward iterator. Does our key compression affect backward iterators?
 

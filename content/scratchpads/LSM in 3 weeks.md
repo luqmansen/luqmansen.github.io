@@ -479,4 +479,17 @@ This is will be similar to RLE, which might will have higher compression ratio b
 Sorry I shouldn't just mention this out of nowhere. SIMD indeed fumble on data chain dependency. But there's an easier reason here: you cannot do stuff like binary search within the block. 
 To use `seek_to_key`, you have to iterate over from the first key to that `K` key (which is my current implementation, that's why i thought of this earlier. I don't even utilize the `block.offsets` property at all :D)
 
+
+## Week 2
+
+https://skyzh.github.io/mini-lsm/week2-overview.html
+
+On LSM tree amplification
+![sst-flush](https://skyzh.github.io/mini-lsm/lsm-tutorial/week2-00-two-extremes-2.svg)
+
+I thought the idea of compaction is to merge bunch of SSTs into fewer, bigger SSTs.
+
 ## Week 2 Day 1
+
+
+

@@ -464,3 +464,6 @@ Maybe if we want to provide more granular interface, like bulk key get, we can l
 > What might be the pros/cons of doing key-prefix encoding over adjacent keys instead of with the first key in the block?
 
 This is will be similar to RLE, which might will have higher compression ratio but you cannot do SIMD / paralleize the operation.
+
+
+### Week 2 Day 1

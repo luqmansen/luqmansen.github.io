@@ -460,24 +460,9 @@ so that during iterator creation, it doesn't have to open buch of SSTs that aren
 Wait. I don't even think you can do backward iterator natively. Because the way data being laid out, backward iterator basically you need to traverse from first key to read the key/val len in order to proceed.
 
 🤖 AI Correction 
-Q2 — Backward iterator: ✗ premise is wrong
+Sorry I completely forgot that there's an offset metadata for each row that we can easily seek with `offset[-1]` 
+What i was imagining is we have to use `next()` to get through next item
 
-Your claim "you'd have to traverse from the first key to read each len" ignores the **offset section**. A block ends with `offsets[]` — the byte start of *every* entry:
-
-```
-data:    [entry_0][entry_1][entry_2]...   offsets: [off_0, off_1, off_2, ...]
-                                                     random access to any entry
-```
-
-So you can jump straight to entry `i-1` via `offsets[i-1]`. No forward walk needed.
-
-And the real question — *does key compression hurt backward iteration?* **No, and here's why:** every key is compressed against the **first key of the block** (`overlap_len` counts shared prefix with `first_key`), which lives at the block start and the iterator holds in `first_key: KeyVec`. That anchor is available no matter which direction you move:
-
-```
-full_key(i) = first_key[..overlap_len_i] ++ key_rest_i    // needs ONLY first_key
-```
-
-Each entry decodes *independently*. Direction is irrelevant. (Whether a backward iterator is *implemented* is a separate matter — but compression isn't what blocks it.)
 
 ---
 > Can you use bloom filters on scan?
@@ -485,9 +470,12 @@ Each entry decodes *independently*. Direction is irrelevant. (Whether a backward
 I don't thinks so. If scan span across multiple SSTs, the consumer might need everything avaiable within that range.
 Maybe if we want to provide more granular interface, like bulk key get, we can largely reduce the SSTs scan by checking everything at once, instead of letting the consumer using scan instead.
 
+---
 > What might be the pros/cons of doing key-prefix encoding over adjacent keys instead of with the first key in the block?
 
 This is will be similar to RLE, which might will have higher compression ratio but you cannot do SIMD / paralleize the operation.
 
+🤖 AI Correction: 
+Sorry I shouldn't just mention this out of nowhere. SIMD indeed fumble on data chain dependency, which means 
 
 ### Week 2 Day 1

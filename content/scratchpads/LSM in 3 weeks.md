@@ -476,6 +476,7 @@ Maybe if we want to provide more granular interface, like bulk key get, we can l
 This is will be similar to RLE, which might will have higher compression ratio but you cannot do SIMD / paralleize the operation.
 
 🤖 AI Correction: 
-Sorry I shouldn't just mention this out of nowhere. SIMD indeed fumble on data chain dependency, which means 
+Sorry I shouldn't just mention this out of nowhere. SIMD indeed fumble on data chain dependency. But there's an easier reason here: you cannot do stuff like binary search within the block. 
+To use `seek_to_key`, you have to iterate over from the first key to that `K` key (which is my current implementation, that's why i thought of this earlier. I don't even utilize the `block.offsets` property at all :D)
 
 ### Week 2 Day 1

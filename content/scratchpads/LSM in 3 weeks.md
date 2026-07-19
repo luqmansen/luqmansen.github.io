@@ -438,3 +438,26 @@ LFU would be less appropriate here for a typical spiky workload, it can inflate 
 I think it might be possible but it's going to be ugly. Tenant abstraction should not live at memtable lvl.
 I think tenancy should be put somewhere else above the memtable layer. Memtable layer should only care about the eviction policy, eg: track recency timestamp, etc
 
+### Week 1 Day 7 - Snack time optimization
+[[2026-07-19]]
+
+Actually i didn't just work on this today but maybe split across past few days as well 
+
+An observation
+- This is the kind of work/coding where you want to brush up your coding/algorithm skills. On the prefix-compression section, I really fumbled lol. The idea is really simple but things i misses lots of edgecases on the encoding/decoding because I didn't think through edgecases. Similar feeling when i'm doing leetcoding. Let me just a set boundary for myself here. I do not debug everything myself. Heck i'm asking AI to do it for me. Mainly and the only reason here is because i don't want to spend my time here debugging my code. I really want to focus on completing this and finish the course getting to understand how people more experienced in Rust writing a database. Currently the pattern I observed has been quite plateau since the iterator section, but I can't wait for the MVCC/transaction pattern, where I really want to reference it for my next simpledb rust rewrite. 
+## [Test Your Understanding](https://skyzh.github.io/mini-lsm/week1-07-sst-optimizations.html#test-your-understanding)
+
+> How does the bloom filter help with the SST filtering process? What kind of information can it tell you about a key? (may not exist/may exist/must exist/must not exist)
+
+so that during iterator creation, it doesn't have to open buch of SSTs that aren't relevant (hence reducing I/O)
+	
+> Consider the case that we need a backward iterator. Does our key compression affect backward iterators?
+
+Wait. I don't even think you can do backward iterator natively. Because the way data being laid out, backward iterator basically you need to traverse from first key to read the key/val len in order to proceed.
+
+
+> Can you use bloom filters on scan?
+
+It is. Same answer with the first?
+
+> What might be the pros/cons of doing key-prefix encoding over adjacent keys instead of with the first key in the block?

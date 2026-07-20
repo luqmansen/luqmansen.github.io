@@ -526,9 +526,11 @@ BOUNDED, DISJOINT SSTs:
 1 Big SST file literally gives no read performance improvement whatsoever. 
 
 
+
 Okay, seems like it took more than I thought to understand leveled vs tiered difference in more details.
 
 Pardon this AI conversation dump. But i will try to synthesize it according to my understanding later [[Understanding LSM Compaction -- AI convo dump]]
+
 
 
 ## Week 2 Day 1

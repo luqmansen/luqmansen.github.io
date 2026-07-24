@@ -549,7 +549,8 @@ Uh, yes? I think the idea is, compacting can take sometimes. While doing so, we 
 
 #### Observations
 
-It's not very surprising, but the fact that an implementation of a struct could be scattered everywhere, quite adds extra cognitive load to track what the upstream struct contains. 
+1. It's not very surprising, but the fact that an implementation of a struct could be scattered everywhere, quite adds extra cognitive load to track what the upstream struct contains. 
 
-update: actually Golang can do this too 🤦
+	update: actually Golang can do this too 🤦
+2. .map / iter() methods are always LAZY
 

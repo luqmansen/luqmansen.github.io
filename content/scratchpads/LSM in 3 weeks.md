@@ -31,6 +31,7 @@ Here is just random note I jot down during my learning.
         };****
 	```
 	i definitely felt the smell coz my initial solution definitely a double disk seek. Thankfully it was being caught when I ask AI why the code feels dumb lol.
+
 ### Uncategorized
 
 - *Idiomatic unwrap*

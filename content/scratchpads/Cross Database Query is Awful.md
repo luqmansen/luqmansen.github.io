@@ -12,7 +12,7 @@ Wrong. There's a reason why ETL / data movement might be something you called a 
 The recent Databrick's LTAP shows that... you can do analytics without data movement??
 https://www.databricks.com/blog/lakebase-ltap-rethinking-database-storage
 ![[Pasted image 20260724171323.png]]
-Uh oh, yeah you don't cobble bunch or systems / traditional CDC/ETL anymore, but strictly speaking, that data still moves around systems. Obviously this is way better, but still, data movement is unavoidable. If you want to do fast analytics, you need to transpose your row based data to columnar based. It's physical constraint that you cannot avoid.
+Uh oh,  you don't cobble bunch or systems / traditional CDC/ETL anymore, but *strictly speaking*, that data still moves around systems. Obviously this is way better, but still, data movement is unavoidable. If you want to do fast analytics, you need to transpose your row based data to columnar based. It's physical constraint that you cannot avoid.
 
 Anyway, back to the topic. Why, at least on redshift-to-postgres, federated query sucks? Okay hear me out. I understand query optimization is one of the hardest topic in database system. BUT, sometimes, when I see dead simple query, like this:
 ```sql
@@ -25,5 +25,14 @@ where event_type.name in ('opened', 'closed')
  I always thought "this filter should be easily pushed down to the data source, right?? It's a simple join with clear predicate filter"
  
  Nope.  Redshift never pushes down query with join. It WILL PULL ALL THE F* DATA across the network, and do local filtering (can either local ssd filter, or worse, remote storage / RMS filter, way slower). If you gotta pull these hundreds million event table, uh, good luck. 
+
+
+You ended up have to do something like this 
+```sql
+select *
+from event
+where type_id = (101, 206)
+```
+Do this optimization for other hundreds of your raw table. Good luck with that.
 
 

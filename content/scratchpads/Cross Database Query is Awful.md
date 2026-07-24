@@ -1,6 +1,6 @@
 
 
-Apart from title, I will rant about Redshift in general. Some may be not factually correct, given my limited experience in data engineering, but it's the experience that I got first hand in this field, take it with a grain of 🧂
+Apart from title, I will rant about Redshift in general. Some may be not factually correct, given my limited experience in data engineering, but it's the experience that I got first hand in this field, take it with a grain of 🧂(Himalayan salt)
 
 
 ## Federated Query, No ETL, Win?
@@ -26,8 +26,7 @@ where event_type.name in ('opened', 'closed')
  
  Nope.  Redshift never pushes down query with join. It WILL PULL ALL THE F* DATA across the network, and do local filtering (can either local ssd filter, or worse, remote storage / RMS filter, way slower). If you gotta pull these hundreds million event table, uh, good luck. 
 
-
-You ended up have to do something like this 
+You will ended up having to do something like this 
 ```sql
 select *
 from event

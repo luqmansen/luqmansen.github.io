@@ -31,8 +31,8 @@ You ended up have to do something like this
 ```sql
 select *
 from event
-where type_id = (101, 206)
+where type_id = (101, 206, ...)
 ```
-Do this optimization for other hundreds of your raw table. Good luck with that.
+Do this bespoke optimization for other hundreds of your raw table models. Good luck with that.
 
 

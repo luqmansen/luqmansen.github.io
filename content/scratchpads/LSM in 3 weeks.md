@@ -536,6 +536,7 @@ Pardon this AI conversation dump. But i will try to synthesize it according to m
 
 ## Week 2 Day 1
 
+[[2026-07-24]]
 
 > - How does your implementation handle L0 flush in parallel with compaction? (Not taking the state lock when doing the compaction, and also need to consider new L0 files produced when compaction is going on.)
 
@@ -544,3 +545,11 @@ I think using the same pattern as the existing one? Taking a quick read lock, co
 >- If your implementation removes the original SST files immediately after the compaction completes, will it cause problems in your system? (Generally no on macOS/Linux because the OS will not actually remove the file until no file handle is being held.)
 
 Uh, yes? I think the idea is, compacting can take sometimes. While doing so, we don't want to block read, which may still read from L0 SSTs.
+
+
+#### Observations
+
+It's not very surprising, but the fact that an implementation of a struct could be scattered everywhere, quite adds extra cognitive load to track what the upstream struct contains. 
+
+update: actually Golang can do this too 🤦
+

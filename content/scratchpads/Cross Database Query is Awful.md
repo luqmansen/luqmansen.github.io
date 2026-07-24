@@ -14,8 +14,16 @@ https://www.databricks.com/blog/lakebase-ltap-rethinking-database-storage
 ![[Pasted image 20260724171323.png]]
 Uh oh, yeah you don't cobble bunch or systems / traditional CDC/ETL anymore, but strictly speaking, that data still moves around systems. Obviously this is way better, but still, data movement is unavoidable. If you want to do fast analytics, you need to transpose your row based data to columnar based. It's physical constraint that you cannot avoid.
 
-Anyway, back to the topic. Why, at least on redshift-to-postgres, federated query sucks? Okay hear me out. I understand query optimization is one of the hardest topic in database system. BUT, sometimes, when I see dead simple query, I always thought "this filter should be easily pushed down to the data source, right??". 
+Anyway, back to the topic. Why, at least on redshift-to-postgres, federated query sucks? Okay hear me out. I understand query optimization is one of the hardest topic in database system. BUT, sometimes, when I see dead simple query, like this:
+```sql
+select *
+from event
+join event_type on event.type_id = event_type.id
+where event_type.name in ('opened', 'closed')
+```
 
-Like
+ I always thought "this filter should be easily pushed down to the data source, right?? It's a simple join with clear predicate filter"
+ 
+ Nope.  Redshift never pushes down query with join. It WILL PULL ALL THE F* DATA across the network, and do local filtering (can either local ssd filter, or worse, remote storage / RMS filter, way slower). If you gotta pull these hundreds million event table, uh, good luck. 
 
 

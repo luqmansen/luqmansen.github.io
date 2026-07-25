@@ -554,3 +554,5 @@ Uh, yes? I think the idea is, compacting can take sometimes. While doing so, we 
 	update: actually Golang can do this too 🤦
 2. .map / iter() methods are always LAZY
 
+[[2026-07-25]]
+3.  Deref / method chaining that automatically look up method on given nested type if current type doesnt have it, is still very unnatural to me. It's indeed probably nice to write, but reading/trying to understanding it is not.

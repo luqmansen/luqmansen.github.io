@@ -536,6 +536,7 @@ Pardon this AI conversation dump. But i will try to synthesize it according to m
 
 ## Week 2 Day 1
 
+#### **Overview**
 [[2026-07-24]]
 
 > - How does your implementation handle L0 flush in parallel with compaction? (Not taking the state lock when doing the compaction, and also need to consider new L0 files produced when compaction is going on.)
@@ -547,6 +548,20 @@ I think using the same pattern as the existing one? Taking a quick read lock, co
 Uh, yes? I think the idea is, compacting can take sometimes. While doing so, we don't want to block read, which may still read from L0 SSTs.
 
 
+#### **Task 2 - Concat Iterator**
+[[2026-07-25]]
+
+https://skyzh.github.io/mini-lsm/week2-01-compaction.html#task-2-concat-iterator
+
+L0 IS SSTs, but they're a raw flush of memtable, which contain overlapping key. That's why we need `MergeIterator` 
+
+L1 and BELOW are SORTED, NON-OVERLAPPING SSTs, that is, we only need to probe the SST metadata and just create 1 `SstIterator` because if it's there, it's guaranteed to be within that SST. This is true for `get` only though. 
+
+but what is the point of concat iterator? It's for calling next SST during `scan` operation. Technically speaking, we can still re-use `MergeIterator`, but just we don't have to pay that inner heap sort + opening all the SSTs all at once during creation and instead, opening one after another. 
+
+Aight, naming is hard. But concat and merge sound like they're doing almost similar thing. Maybe `MergeIterator` could be more explicit like `MergeAndDedupIterator` and/or concat iterator could be `NonOverlappingSSTIterator` (😂)
+ 
+
 #### Observations
 
 1. It's not very surprising, but the fact that an implementation of a struct could be scattered everywhere, quite adds extra cognitive load to track what the upstream struct contains. 
@@ -556,3 +571,5 @@ Uh, yes? I think the idea is, compacting can take sometimes. While doing so, we 
 
 [[2026-07-25]]
 3.  Deref / method chaining that automatically look up method on given nested type if current type doesnt have it, is still very unnatural to me. It's indeed probably nice to write, but reading/trying to understanding it is not.
+
+4. 

@@ -573,8 +573,9 @@ Aight, naming is hard. But concat and merge sound like they're doing almost simi
 
 -   Deref / method chaining that automatically look up method on given nested type if current type doesnt have it, is still very unnatural to me. It's indeed probably nice to write, but reading/trying to understanding it is not.
 
-[[2026-07-26]]
+
 ## [Test Your Understanding](https://skyzh.github.io/mini-lsm/week2-01-compaction.html#test-your-understanding)
+[[2026-07-26]]
 
 > What are the definitions of read/write/space amplifications? (This is covered in the overview chapter)
 
@@ -587,10 +588,30 @@ eg: we want to write an entry of 4 bytes, but because of N amount compactions, w
 space amp
 - take your number of written keys and estimate their avg size vs the actual space taken 
 read/write amp
-- maybe using syscall counter like strace / syscount ? eg: how many times IO ops performed vs actual amt of function performed i.e. num of get() / write() )
+- maybe using syscall counter like strace / syscount ? eg: how many times IO ops performed vs actual amount of function performed i.e. num of get() / write() )
 
-- Is it correct that a key will take some storage space even if a user requests to delete it?
-- Given that compaction takes a lot of write bandwidth and read bandwidth and may interfere with foreground operations, it is a good idea to postpone compaction when there are large write flow. It is even beneficial to stop/pause existing compaction tasks in this situation. What do you think of this idea? (Read the [SILK: Preventing Latency Spikes in Log-Structured Merge Key-Value Stores](https://www.usenix.org/conference/atc19/presentation/balmau) paper!)
-- Is it a good idea to use/fill the block cache for compactions? Or is it better to fully bypass the block cache when compaction?
-- Does it make sense to have a `struct ConcatIterator<I: StorageIterator>` in the system?
-- Some researchers/engineers propose to offload compaction to a remote server or a serverless lambda function. What are the benefits, and what might be the potential challenges and performance impacts of doing remote compaction? (Think of the point when a compaction completes and what happens to the block cache on the next read request…)
+> Is it correct that a key will take some storage space even if a user requests to delete it?
+
+correct. at least until next compaction
+
+> Given that compaction takes a lot of write bandwidth and read bandwidth and may interfere with foreground operations, it is a good idea to postpone compaction when there are large write flow. It is even beneficial to stop/pause existing compaction tasks in this situation. What do you think of this idea? (Read the [SILK: Preventing Latency Spikes in Log-Structured Merge Key-Value Stores](https://www.usenix.org/conference/atc19/presentation/balmau) paper!)
+
+Maybe. Though, it sounds like it will complicate the code significantly 
+
+
+> Is it a good idea to use/fill the block cache for compactions? Or is it better to fully bypass the block cache when compaction?
+
+Compaction may happen not as often as block cache flush. Using block cache to read during compaction means it will pin the blockcache while compaction happens, which we may don't want if we have limited mem size. Also compaction happens on background thread, means it needs to be implement `Send`  , 
+which I don't know but sounds like it's going to complicate the code a lot Also, compaction is not time-sensitive operation. Maybe not worth it.
+
+> Does it make sense to have a `struct ConcatIterator<I: StorageIterator>` in the system?
+
+I don't get it. Maybe not. The lowest abstraction is SST, which at this point, the only structure that have non-overlapping key ranges.
+Maybe if we introduce another abstraction? Like (random idea) remote vs local SSTs which may contains diff mechanism of retrieval/iteration 
+
+
+> Some researchers/engineers propose to offload compaction to a remote server or a serverless lambda function. What are the benefits, and what might be the potential challenges and performance impacts of doing remote compaction? (Think of the point when a compaction completes and what happens to the block cache on the next read request…)
+
+ network roundtrip. Maybe related to prev point.
+ State coordination with remote storage is complicated. Also need to implement new iterator abstractions such as `ObjectStoredSstIterator` 
+ (will revisit this low-effort answer later)

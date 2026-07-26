@@ -570,6 +570,8 @@ Aight, naming is hard. But concat and merge sound like they're doing almost simi
 2. .map / iter() methods are always LAZY
 
 [[2026-07-25]]
-3.  Deref / method chaining that automatically look up method on given nested type if current type doesnt have it, is still very unnatural to me. It's indeed probably nice to write, but reading/trying to understanding it is not.
 
-4. 
+-   Deref / method chaining that automatically look up method on given nested type if current type doesnt have it, is still very unnatural to me. It's indeed probably nice to write, but reading/trying to understanding it is not.
+
+[[2026-07-26]]
+- 

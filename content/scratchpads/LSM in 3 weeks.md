@@ -614,4 +614,4 @@ Maybe if we introduce another abstraction? Like (random idea) remote vs local SS
 
  network roundtrip. Maybe related to prev point.
  State coordination with remote storage is complicated. Also need to implement new iterator abstractions such as `ObjectStoredSstIterator` 
- (will revisit this low-effort answer later)
+ (will revisit this low-effort answer later) #to-answer-later 

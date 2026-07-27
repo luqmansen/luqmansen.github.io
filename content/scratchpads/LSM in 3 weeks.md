@@ -615,3 +615,32 @@ Maybe if we introduce another abstraction? Like (random idea) remote vs local SS
  network roundtrip. Maybe related to prev point.
  State coordination with remote storage is complicated. Also need to implement new iterator abstractions such as `ObjectStoredSstIterator` 
  (will revisit this low-effort answer later) #to-answer-later 
+
+
+## Week 2 Day 2
+
+https://skyzh.github.io/mini-lsm/week2-02-simple.html#before-you-begin
+
+> **Predict before coding:** With `size_ratio_percent = 200`, suppose L1 has two files, L2 has three, and L3 has eight. Which adjacent pair should be compacted next? If a new L0 file is flushed while that task runs, should applying the result change L0?
+
+L1 = sst1, sst2 = 10MB @5MB
+L2 = sst1, sst2, sst3 = 200 MB @65MB
+L3 = sst1, sst2, sstN, sstN, sstN, sstN, sstN, sstN, sstN  = 4GB @500MB
+
+size ratio 200 means each level is 200x bigger than prior level
+
+> 💡 correction. It's percent not 200x dumbass 🤦
+
+>Which adjacent pair should be compacted next
+
+Maybe next adjacent pair is L1 & L2 ? Size is still too small
+
+>If a new L0 file is flushed while that task runs, should applying the result change L0?
+
+Maybe? because L1 & L2 compacted into L1, L0 has nothing to do?
+
+
+My Questions
+>  `generate_compaction_task` must eventually return `None`; otherwise, the simulator and background worker cannot converge.
+
+why background worker need to converge ?

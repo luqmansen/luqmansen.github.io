@@ -6,8 +6,10 @@ Quite some time ago, I remember reading about "how fast is your database" or som
 Today, I figured out where THAT might be actually sometime that I need. AND, for some reason, PostgreSQL (and apparently MySQL too) does support it.
 
 ```sql
-CREATE RULE your_important_table AS 
-	ON INSERT TO your_important_table DO INSTEAD NOTHING;
+CREATE RULE make_write_faster_rule AS 
+	ON INSERT TO your_super_important_table DO INSTEAD NOTHING;
 ```
 
-I haven't investigated wh
+To my limited understanding, `DO NOTHING` here is the keyword usually being used together with `ON CONFLICT`. But what's kinda crazy to think about is, that this code path even available. I mean, this SQL is parsed and executed, meaning that this combination of execution path must be explicitly made, not something accidental. And now, is one of the day where people like me could use it.
+
+Ok, the less interesting part. What do I use it for? Well, we do host an opensource application at my company. And, because of my personal preference, I deliberately choose to use multi-tenant database, aka same postgres instance, shared across many apps (still with a proper access control of course). But

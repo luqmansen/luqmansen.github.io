@@ -1,16 +1,28 @@
 
-And to some extend, want to implement it on my toy database project
+And to some extend, want to implement it on my toy rdbms project
 
 In no particular order
 
+Storage Engine
+- Object store based LSM
+
+Query Parsing
+- RDP / TDP (rudimentary)
+- YACC/ANTLR
+
+SQL Feature
+- CTE support
+- ASOF join
+	- https://questdb.com/blog/asof-join/
+
 Query Optimization Techniques
+- Cost based optimizer
+	- (too broad, will add more details)
 - Query unnesting
 	- https://15799.courses.cs.cmu.edu/spring2025/papers/11-unnesting/neumann-btw2015.pdf
-- Cost based optimizer
 
 Formal verification
 	- https://queue.acm.org/detail.cfm?id=3819084
-
 
 IO-techniques
 	- Async-IO (a la tokio)
@@ -18,6 +30,5 @@ IO-techniques
 	- io_uring
 	- direct-io
 
-
 Memory Management
-- Region-based memory (aka Arena)
+- Region-based memory (Arena)

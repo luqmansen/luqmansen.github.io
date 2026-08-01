@@ -644,3 +644,22 @@ My Questions
 >  `generate_compaction_task` must eventually return `None`; otherwise, the simulator and background worker cannot converge.
 
 why background worker need to converge ?
+
+
+[[2026-08-01]]
+Damn it's a week later. I totally not able to work on this during workdays. I should fix my time management.
+
+Anyway,
+
+The "level" concept in leveled compaction is very counter intuitive. I tripped many times.
+
+```rust
+
+        for (idx, ids) in _snapshot.levels.iter() {
+            if *idx + 1 > _snapshot.levels.len() {
+                return None;
+            }
+            // fuck this is very counter intuitive 
+            let (upper_lvl, upper_ids) = &_snapshot.levels[*idx];
+            let (lower_lvl, lower_ids) = &_snapshot.levels[idx + 1]
+```

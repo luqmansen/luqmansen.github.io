@@ -653,6 +653,7 @@ Anyway,
 
 The "level" concept in leveled compaction is very counter intuitive. I tripped many times.
 
+
 ```rust
 
         for (idx, ids) in _snapshot.levels.iter() {
@@ -662,4 +663,36 @@ The "level" concept in leveled compaction is very counter intuitive. I tripped m
             // fuck this is very counter intuitive 
             let (upper_lvl, upper_ids) = &_snapshot.levels[*idx];
             let (lower_lvl, lower_ids) = &_snapshot.levels[idx + 1]
+```
+
+REMEMBER THIS
+```
+   L0   ┐  shallower, newer data, SMALLER number
+   L1   │
+   L2   │        data flows DOWN
+   L3   ┘  deeper, older data, BIGGER number
+
+   UPPER = source      = shallower = smaller level number
+   LOWER = destination = deeper    = bigger  level number
+
+   so in the array:   levels[i]      is the UPPER
+                      levels[i + 1]  is the LOWER      (bigger index = deeper)
+
+```
+
+
+Also, I would call out this kind of "returning raw dict/tuple" semantic. It's hard to understand the intent by just simply reading the interface
+```rust
+fn something_clear_yet_people_unfamiliar_with_the_codebase(something *T) -> (int, u64, i32. &str)
+```
+
+Function naming is arguably fine. But the interface it returns is not. I was initially confused what the fuck do i expect to do with the returned `Vec` here:
+
+```rust
+    pub fn apply_compaction_result(
+        &self,
+        _snapshot: &LsmStorageState,
+        _task: &SimpleLeveledCompactionTask,
+        _output: &[usize],
+    ) -> (LsmStorageState, Vec<usize>) {
 ```

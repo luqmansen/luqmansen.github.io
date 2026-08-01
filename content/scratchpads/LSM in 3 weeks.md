@@ -696,3 +696,7 @@ Function naming is arguably fine. But the interface it returns is not. I was ini
         _output: &[usize],
     ) -> (LsmStorageState, Vec<usize>) {
 ```
+
+
+#rust-database-pattern
+I have yet to understand the concept of getting the inner value of `&Arc<T>` 

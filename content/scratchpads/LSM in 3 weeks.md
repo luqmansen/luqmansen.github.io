@@ -732,7 +732,10 @@ pub(crate) struct LsmStorageInner {
     pub(crate) state_lock: Mutex<()>,
 }
 
+
+
 /// A thin wrapper for `LsmStorageInner` and the user interface for MiniLSM.
+/// which We don't use this at least until week 3
 pub struct MiniLsm {
     pub(crate) inner: Arc<LsmStorageInner>,
 }
@@ -741,12 +744,23 @@ pub struct MiniLsm {
 
 Up until week 2, we're only working with `LsmStorageState` and `LsmStorageInner`
 
+There are 2 main access patterns:
 
-There are X main access patterns:
+1. `LsmStorageState.memtable`'s `read` and `write` 
 
-1. Memtable's `read` and `write`.
-   Both are 
-2. 
+	Which the `write/put` surprisingly  only takes reference to the self,  thanks to the lockless skiplist.
+
+2. `LsmStorageState` mutation
+
+   This is where for me as a person who used to with the convenience of runtime-managed language tripped the most.
+      
+   There are few operations where you need to have mutable access to the inner state:
+   - flushing memtable immutable `imm_memtables`
+   - modifying the `sstables` , `levels`
+   - etc
+   
+	The point is, during this mutation, you need full exclusive lock over the state. This is 
+
 
 
 I have yet to understand the concept of getting the inner value of `&Arc<T>` 

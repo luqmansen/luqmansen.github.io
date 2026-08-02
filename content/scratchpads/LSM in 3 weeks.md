@@ -701,5 +701,6 @@ Function naming is arguably fine. But the interface it returns is not. I was ini
 [[2026-08-02]]
 The simple leveled compaction brought me with some level of debugging, that I have a feeling it all could be solved (maybe even partially) with a better interface. I put a ai-dump here just for my own reference 
 
+
 #rust-database-pattern
 I have yet to understand the concept of getting the inner value of `&Arc<T>` 

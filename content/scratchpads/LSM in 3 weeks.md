@@ -759,7 +759,7 @@ There are 2 main access patterns:
    - modifying the `sstables` , `levels`
    - etc
    
-	The point is, during this mutation, you need full exclusive lock over the state. This is 
+	The point is, during this mutation, you need full exclusive lock over the `state`.  This is why 
 
 
 

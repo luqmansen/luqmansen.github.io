@@ -10,10 +10,13 @@ In no particular order
 
 Storage Engine
 - Object store based LSM
+	- https://arxiv.org/abs/1812.07527
 
 Query Parsing
 - RDP / TDP (rudimentary)
-- YACC/ANTLR
+- YACC
+	- 
+- ANTLR
 
 SQL Feature
 - CTE support

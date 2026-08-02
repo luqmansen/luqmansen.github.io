@@ -530,7 +530,7 @@ BOUNDED, DISJOINT SSTs:
 
 Okay, seems like it took more than I thought to understand leveled vs tiered difference in more details.
 
-Pardon this AI conversation dump. But i will try to synthesize it according to my understanding later [[Understanding LSM Compaction -- AI convo dump]]
+Pardon this AI conversation dump. But i will try to synthesize it according to my understanding later [[Understanding LSM Compaction]]
 
 
 
@@ -697,6 +697,9 @@ Function naming is arguably fine. But the interface it returns is not. I was ini
     ) -> (LsmStorageState, Vec<usize>) {
 ```
 
+
+[[2026-08-02]]
+The simple leveled compaction brought me with some level of debugging, that I have a feeling it all could be solved (maybe even partially) with a better interface. I put a ai-dump here just for my own reference 
 
 #rust-database-pattern
 I have yet to understand the concept of getting the inner value of `&Arc<T>` 

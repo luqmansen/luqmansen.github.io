@@ -760,14 +760,14 @@ There are 2 main access patterns:
    - etc
    
 	The point is, during this mutation, you need full exclusive lock over the `state`.  
-	Ok, then why do i have 
+	Ok, then why do i have both mutex and rw-lock 
 	```rust
     pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
     pub(crate) state_lock: Mutex<()>,
 	```
 	???
 	
-	
+	This is the first pattern: Indenpendently swapping the state. Why being independent here is important (note: I'm not sure if "independent" here is correct choice of word, but let's #revisit-later) ? It is because you can guarantee (i wish this could be compile time guarantee, but anyway) that the operation here is serialized.
 
 
 I have yet to understand the concept of getting the inner value of `&Arc<T>` 

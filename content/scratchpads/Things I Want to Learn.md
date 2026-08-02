@@ -14,9 +14,10 @@ Storage Engine
 
 Query Parsing
 - RDP / TDP (rudimentary)
+- ANTLR4
 - YACC
-	- 
-- ANTLR
+
+- 
 
 SQL Feature
 - CTE support

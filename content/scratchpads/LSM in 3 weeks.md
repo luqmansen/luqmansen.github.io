@@ -759,8 +759,15 @@ There are 2 main access patterns:
    - modifying the `sstables` , `levels`
    - etc
    
-	The point is, during this mutation, you need full exclusive lock over the `state`.  This is why 
-
+	The point is, during this mutation, you need full exclusive lock over the `state`.  
+	Ok, then why do i have 
+	```rust
+    pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
+    pub(crate) state_lock: Mutex<()>,
+	```
+	???
+	
+	
 
 
 I have yet to understand the concept of getting the inner value of `&Arc<T>` 

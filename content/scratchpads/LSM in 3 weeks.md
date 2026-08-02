@@ -706,4 +706,47 @@ The simple leveled compaction brought me with some level of debugging, that I ha
 
 
 #rust-database-pattern
+This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. This part was all over the place during the early week 1.  Now, I really want to formalize my understanding. 
+
+These are the core structs of the storage engine itself.
+```rust
+// rest of the properties are omitted for clarity
+
+/// Represents the state of the storage engine.
+pub struct LsmStorageState {
+    /// The current memtable.
+    pub memtable: Arc<MemTable>,
+    /// Immutable memtables, from latest to earliest.
+    pub imm_memtables: Vec<Arc<MemTable>>,
+    /// L0 SSTs, from latest to earliest.
+    pub l0_sstables: Vec<usize>,
+    /// SsTables sorted by key range; L1 - L_max for leveled compaction, or tiers for tiered
+    /// compaction.
+    pub levels: Vec<(usize, Vec<usize>)>,
+    /// SST objects.
+    pub sstables: HashMap<usize, Arc<SsTable>>,
+}
+
+pub(crate) struct LsmStorageInner {
+    pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
+    pub(crate) state_lock: Mutex<()>,
+}
+
+/// A thin wrapper for `LsmStorageInner` and the user interface for MiniLSM.
+pub struct MiniLsm {
+    pub(crate) inner: Arc<LsmStorageInner>,
+}
+```
+
+
+Up until week 2, we're only working with `LsmStorageState` and `LsmStorageInner`
+
+
+There are X main access patterns:
+
+1. Memtable's `read` and `write`.
+   Both are 
+2. 
+
+
 I have yet to understand the concept of getting the inner value of `&Arc<T>` 

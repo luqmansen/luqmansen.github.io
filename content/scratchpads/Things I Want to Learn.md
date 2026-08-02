@@ -3,6 +3,9 @@ And to some extend, want to implement it on my toy rdbms project
 
 In no particular order
 
+Advance Rust Typesystem
+- https://github.com/lilyyy411/rust-type-fuckery
+
 Storage Engine
 - Object store based LSM
 
@@ -20,6 +23,10 @@ Query Optimization Techniques
 	- (too broad, will add more details)
 - Query unnesting
 	- https://15799.courses.cs.cmu.edu/spring2025/papers/11-unnesting/neumann-btw2015.pdf
+
+Query Execution
+- Vectorized Execution
+- JIT Query Compilation (not sure where this belongs)
 
 Formal verification
 	- https://queue.acm.org/detail.cfm?id=3819084

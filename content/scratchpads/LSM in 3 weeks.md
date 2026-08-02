@@ -767,7 +767,7 @@ There are 2 main access patterns:
 	```
 	???
 	
-	OK to be fair i haven'
+	
 
 
 I have yet to understand the concept of getting the inner value of `&Arc<T>` 

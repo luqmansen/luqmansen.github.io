@@ -76,9 +76,15 @@ Hence, here, I want to synthesis what I have learn after that, during following 
 		
 		```rust
 pub fn force_freeze_memtable(&self) -> Result<()> {
+	{
+	    let state = self.state.read();
+	    if state.memtable.approximate_size() < self.target_size { 
+	        return Ok(())
+	}
+	
 	let mut guard = self.state.write();
 	let mut state = guard.as_ref().clone();
-
+	
 	state.imm_memtables.insert(0, Arc::clone(&state.memtable));
 	let new_memtable = MemTable::create(self.next_sst_id());
 	state.memtable = Arc::new(new_memtable);

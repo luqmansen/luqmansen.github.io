@@ -10,115 +10,123 @@ Why? Because once, before I learn rust properly, during reading the [[Database d
 Hence, here, I want to synthesis what I have learn after that, during following this [[LSM in 3 weeks]] course. Most of these patterns are something that observed I know I should've used during my first attempt of writing database in Rust.
 
 
-1. Serialized Write + RW-Lock
-	This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. This part was all over the place during the early week 1 of [[LSM in 3 weeks]].  Now, I really want to formalize my understanding. 
-	
-	Suppose that these are the core structs of the storage engine you're trying to build:
-	```rust
-	// rest of the properties are omitted for clarity
-	
-	/// Represents the state of the storage engine.
-	pub struct LsmStorageState {
-	    /// The current memtable.
-	    pub memtable: Arc<MemTable>,
-	    /// Immutable memtables, from latest to earliest.
-	    pub imm_memtables: Vec<Arc<MemTable>>,
-	    
-	    pub sstables: HashMap<usize, Arc<SsTable>>,
-	    
-	    // .... omitted 
-	}
-	
-	pub(crate) struct LsmStorageInner {
-	    pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
-	    pub(crate) state_lock: Mutex<()>,
-	    
-	    // .... omitted 
-	}
-	
-	
-	
-	/// A thin wrapper for `LsmStorageInner` and the user interface for MiniLSM.
-	/// which We don't use this at least until week 3
-	pub struct MiniLsm {
-	    pub(crate) inner: Arc<LsmStorageInner>,
-	    
-	}
-	```
-	
-	There are 2 main access patterns:
-	
-	1. `LsmStorageState.memtable`'s `read` and `write` 
-	
-		Which the `write/put` surprisingly  only takes reference to the self,  thanks to the lockless SkipList. Let's consider we're only going to use lockless (hence `mut`-less data structure)
-	
-	2. `LsmStorageState` mutation
-	
-	   This is where for me as a person who used to with the convenience of runtime-managed language tripped the most.
-	      
-	   There are few operations where you need to have mutable access to the inner state:
-	   - flushing memtable immutable `imm_memtables`
-	   - modifying the `sstables` , `levels`
-	   - etc
-	   
-		The point is, during this mutation, you need full exclusive lock over the `state`.  
-		Ok, then why do i have both mutex and rw-lock 
-		```rust
-	    pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
-	    pub(crate) state_lock: Mutex<()>,
-		```
-		?
-		
-		This is the first pattern: State swapping under guarded Mutex.
-		
+## Serialized Write + RW-Lock
 
-		Suppose this code
-		
-		```rust
-pub fn force_freeze_memtable(&self) -> Result<()> {
-	{
-	    let state = self.state.read();
-	    if state.memtable.approximate_size() < self.target_size { 
-	        return Ok(())
-	}
-	
-	let mut guard = self.state.write();
-	let mut state = guard.as_ref().clone();
-	
-	state.imm_memtables.insert(0, Arc::clone(&state.memtable));
-	let new_memtable = MemTable::create(self.next_sst_id());
-	state.memtable = Arc::new(new_memtable);
+This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. This part was all over the place during the early week 1 of [[LSM in 3 weeks]].  Now, I really want to formalize my understanding. 
 
-	*guard = Arc::new(state);
+Suppose that these are the core structs of the storage engine you're trying to build:
+```rust
+// rest of the properties are omitted for clarity
 
-	Ok(())
+/// Represents the state of the storage engine.
+pub struct LsmStorageState {
+	/// The current memtable.
+	pub memtable: Arc<MemTable>,
+	/// Immutable memtables, from latest to earliest.
+	pub imm_memtables: Vec<Arc<MemTable>>,
+	
+	pub sstables: HashMap<usize, Arc<SsTable>>,
+	
+	// .... omitted 
 }
-		```
 
-		What's wrong with above code? Essentially, during the second read, there could be 2 compactions that race trying to install the new latest state. There could be a genuine race condition there (lost update)
-		
-		This is a good timeline illustration for 
+pub(crate) struct LsmStorageInner {
+	pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
+	pub(crate) state_lock: Mutex<()>,
+	
+	// .... omitted 
+}
+
+
+
+/// A thin wrapper for `LsmStorageInner` and the user interface for MiniLSM.
+/// which We don't use this at least until week 3
+pub struct MiniLsm {
+	pub(crate) inner: Arc<LsmStorageInner>,
+	
+}
 ```
-time   writer A (L0→L1 compaction)          writer B (L1→L2 compaction)
- |
-t1     read()  → snapshot S0
-       S0.levels[0] = [1,2,3]
- |
-t2                                          read()  → snapshot S0   (same bytes!)
-                                            S0.levels[0] = [1,2,3]
- |
-t3     ...build sst 9 on disk...            ...build sst 10 on disk...
- |
-t4     write(); *guard = S0 + levels[0]=[9]
-       ┌──────────────────────────┐
-       │ state now: levels[0]=[9] │
-       └──────────────────────────┘
- |
-t5                                          write(); *guard = S0 + levels[0]=[] , levels[1]=[10]
-                                            ┌───────────────────────────────────┐
-                                            │ state now: levels[0]=[]           │
-                                            │ sst 9 is GONE from the tree       │
-                                            └───────────────────────────────────┘
+
+There are 2 main access patterns:
+
+1. `LsmStorageState.memtable`'s `read` and `write` 
+
+	Which the `write/put` surprisingly  only takes reference to the self,  thanks to the lockless SkipList. Let's consider we're only going to use lockless (hence `mut`-less data structure) for now. 
+
+2. `LsmStorageState` mutation
+
+   This is where for me as a person who used to with the convenience of runtime-managed language tripped the most.
+	  
+   There are few operations where you need to have mutable access to the inner state:
+   - flushing memtable immutable `imm_memtables`
+   - modifying the `sstables` , `levels`
+   - etc
+   
+	The point is, during this mutation, you need full exclusive lock over the `state`.  
+	Ok, then why do i have both mutex and rw-lock 
+	```rust
+	pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
+	pub(crate) state_lock: Mutex<()>,
+	```
+	?
+	
+	This is the first pattern: State swapping under guarded Mutex.
+	
+
+	Suppose this code
+	
+	```rust
+pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
+// first block
+{
+	let state = self.state.read();
+	if state.memtable.approximate_size() < self.target_size { 
+		state.memtable.put(_key, _value);
+		return Ok(())
+}
+
+// second block
+let mut guard = self.state.write();
+let mut state = guard.as_ref().clone();
+
+state.imm_memtables.insert(0, Arc::clone(&state.memtable));
+let new_memtable = MemTable::create(self.next_sst_id());
+state.memtable = Arc::new(new_memtable);
+
+state.memtable.put(_key, _value); 
+
+*guard = Arc::new(state);
+
+Ok(())
+}
+	```
+
+	What's wrong with above code? Essentially, during the second block, there could be 2 threads that race trying to install freeze the memtable and replace it with a new one. There could be a genuine race condition there (lost update of the prev newly installed memtable here.
+	
+	This is a good timeline illustration for this. Suppose there're 2 threads, A and B
+```
+		  state.memtable
+t0            ┌────────┐
+		  │  M0    │   ← puts land here
+		  └────────┘
+
+t1  A snapshots: sees M0. creates M1.
+t2  B snapshots: sees M0. creates M2.
+
+t3  A installs   memtable = M1,  imm = [M0]
+		  ┌────────┐
+		  │  M1    │   ← puts land here now
+		  └────────┘        put("x","1") → goes into M1
+
+t4  B installs   memtable = M2,  imm = [M0]
+		  ┌────────┐
+		  │  M2    │
+		  └────────┘
+
+M1  ──▶  unreachable. refcount hits 0. freed.
+		 "x" was never flushed, never in imm_memtables,
+		 never on disk. The put returned Ok(()).
+
 
 ```
 
@@ -126,27 +134,73 @@ t5                                          write(); *guard = S0 + levels[0]=[] 
 Why don't just hold the `state.write()` the entire time then? Because that way, you would block other threads that only want to read. 
 
 This is where you need the `state_lock` / `Mutex` which essentially, to have 2 independent locks that we can call separately. That way, you can check the state before swapping the internal state.
-
-Technically you can do this:
-	
 ```rust
-pub fn force_full_compaction(&self) -> Result<()> {
+pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
+// first block
+{
+	let state = self.state.read();
+	if state.memtable.approximate_size() < self.target_size { 
+		state.memtable.put(_key, _value);
+		return Ok(())
+}
 
-	let state_lock = self.state_lock.lock();
-	
-	// this might be long compaction
-	let result = self.compact(&task) 
-	
-	// below is microsecond pointer swap
-	let mut guard = self.state.write();
-	let latest_date = guard.as_ref().clone()
-	
-	apply_result_to_state(latest_date, result);
-	*guard = Arc::new(latest_date);
+// NEW!!!
+let state_lock = self.state_lock.lock();
+{
+	// read again.there's a chance that other thread
+	// has already froze the table
+	let state = self.state.read();
+	if state.memtable.approximate_size() < target_size {
+		let v = state.memtable.put(_key, _value);
+		return Ok(());
+	} 
+} // read lock released here! 
 
-	Ok(())
+let mut guard = self.state.write();
+let mut state = guard.as_ref().clone();
+
+state.imm_memtables.insert(0, Arc::clone(&state.memtable));
+let new_memtable = MemTable::create(self.next_sst_id());
+state.memtable = Arc::new(new_memtable);
+
+state.memtable.put(_key, _value); 
+
+*guard = Arc::new(state);
+
+Ok(())
+
+// state_lock released here!
 }
 ```
 
 
-I want to 
+
+ **Questions!!!**
+
+If the `memtable` is genuinely lockless data structure, why don't we just put it outside as standalone `Arc` without wrapping it with a RW-lock? The write and read doesn't require `mut` anyway
+
+```rust
+
+struct LsmStorageState{
+	state: Arc<LsmStorageState>
+	mutex: Mutext()
+}
+
+```
+
+Like this?
+
+Bingbong! Your code won't compile!
+
+```rust
+
+fn freeze(&self) {                       // &self, always
+    let _g = self.mutex.lock();
+    let mut s = (*self.state).clone();
+    s.imm_memtables.insert(0, ...);
+    self.state = Arc::new(s);
+//  ^^^^^^^^^^ error[E0594]: cannot assign to `self.state`,
+//             which is behind a `&` reference
+}
+
+```

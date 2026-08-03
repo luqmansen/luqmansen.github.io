@@ -765,9 +765,34 @@ There are 2 main access patterns:
     pub(crate) state: Arc<RwLock<Arc<LsmStorageState>>>,
     pub(crate) state_lock: Mutex<()>,
 	```
-	???
+	?
 	
-	This is the first pattern: Indenpendently swapping the state. Why being independent here is important (note: I'm not sure if "independent" here is correct choice of word, but let's #revisit-later) ? It is because you can guarantee (i wish this could be compile time guarantee, but anyway) that the operation here is serialized.
+	This is the first pattern: Independently swapping the state. Why being independent here is important (note: I'm not sure if "independent" here is correct choice of word, but let's #revisit-later). It is because you can guarantee (I wish this could be compile time guarantee, but anyway) that the operation here is serialized.
+
+	Exhibit 1:
+	```rust
+	pub fn swap_the_state(&self) -> Result<()> {
+		// write guard, no other thread can read it
+        let mut guard = self.state.write();
+        // as_ref() will take &T from Arc<T>, clone is deep copy here, we get the T (i.e. LsmStorageState)
+        let mut state = guard.as_ref().clone();
+		
+		// you have full mutable control at this point, do whatever you want. 
+		// Below is example during memtable flushing and replacing the instance
+        state.imm_memtables.insert(0, Arc::clone(&state.memtable));
+        let new_memtable = MemTable::create(self.next_sst_id());
+        state.memtable = Arc::new(new_memtable);
+		
+		// important step! Put the inner state back where it was
+        *guard = Arc::new(state);
+
+        Ok(())
+    }
+	```
 
 
-I have yet to understand the concept of getting the inner value of `&Arc<T>` 
+	What's the point of `state_lock` then?
+
+
+
+

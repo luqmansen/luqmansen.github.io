@@ -5,6 +5,7 @@ In no particular order
 
  Rust
 - Advance Rust Typesystem
+	- https://github.com/skyzh/type-exercise-in-rust
 	- https://github.com/lilyyy411/rust-type-fuckery
 - Async Runtimes 
 

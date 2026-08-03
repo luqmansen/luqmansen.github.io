@@ -12,10 +12,9 @@ Hence, here, I want to synthesis what I have learned after that, during followin
 
 ## Serialized Write + RW-Lock
 
-This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. Without this, you bes
+This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. This pattern was all over the place during the early week 1 of [[LSM in 3 weeks]].  
 
-
-This part was all over the place during the early week 1 of [[LSM in 3 weeks]].  Now, I really want to formalize my understanding. 
+Without this, my first attempt was to sprinkle `Arc<Mutex<T>>`  all over my code. Technically speaking, it will work, but it's unidiomatic and most importantly will grind your database to a halt, because read and write require synchronization.
 
 Suppose that these are the core structs of the storage engine you're trying to build:
 ```rust
@@ -182,7 +181,16 @@ Ok(())
 
 If the `memtable` is genuinely lockless data structure, why don't we just put it outside as standalone `Arc` without wrapping it with a RW-lock? The write and read doesn't require `mut` anyway
 
-Like this?
+We used to do this in Golang!
+```go
+type Inner struct {                     
+    mu    sync.Mutex // equal to guards state        
+    state *State                        
+}  
+```
+
+
+We should be able to create something equivalent in rust, like this?
 
 ```rust
 
@@ -190,8 +198,11 @@ struct LsmStorageInnerRwLockLess{
 	state: Arc<LsmStorageState>
 	mutex: Mutext()
 }
+```
 
 
+And this this is how we should freeze!
+```rust
 impl LsmStorageInnerRwLockLess {
     fn freeze(&self) {
         let _g = self.state_lock.lock();
@@ -201,14 +212,17 @@ impl LsmStorageInnerRwLockLess {
         s.imm_memtables.insert(0, Arc::clone(&self.state.memtable));
         
         self.state = Arc::new(s);
-        //  ^^^^^^^^^^ 
-        // cannot assign to `self.state`, which is behind a `&` reference
-		// `self` is a `&` reference, so it cannot be written to
     }
 }
 ```
 
 Bing bong! Your code won't compile!
+	```rust
+	self.state = Arc::new(s);
+        //  ^^^^^^^^^^ 
+        // cannot assign to `self.state`, which is behind a `&` reference
+		// `self` is a `&` reference, so it cannot be written to
+```
 
 
 ```rust

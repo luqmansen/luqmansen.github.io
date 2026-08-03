@@ -181,7 +181,7 @@ If the `memtable` is genuinely lockless data structure, why don't we just put it
 
 ```rust
 
-struct LsmStorageState{
+struct LsmStorageInnerRwLockLess{
 	state: Arc<LsmStorageState>
 	mutex: Mutext()
 }
@@ -190,17 +190,23 @@ struct LsmStorageState{
 
 Like this?
 
-Bingbong! Your code won't compile!
+Bing bong! Your code won't compile!
 
 ```rust
-
-fn freeze(&self) {                       // &self, always
-    let _g = self.mutex.lock();
-    let mut s = (*self.state).clone();
-    s.imm_memtables.insert(0, ...);
-    self.state = Arc::new(s);
-//  ^^^^^^^^^^ error[E0594]: cannot assign to `self.state`,
-//             which is behind a `&` reference
+impl LsmStorageInnerRwLockLess {
+    fn freeze(&self) {
+        let _g = self.state_lock.lock();
+        
+        let mut s = (*self.state).clone();
+        
+        s.imm_memtables.insert(0, Arc::clone(&self.state.memtable));
+        
+        self.state = Arc::new(s);
+        //  ^^^^^^^^^^ 
+        // cannot assign to `self.state`, which is behind a `&` reference
+		// `self` is a `&` reference, so it cannot be written to
+    }
 }
+
 
 ```

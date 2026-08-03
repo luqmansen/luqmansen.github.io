@@ -126,27 +126,27 @@ t5                                          write(); *guard = S0 + levels[0]=[] 
 Why don't just hold the `state.write()` the entire time then? Because that way, you would block other threads that only want to read. 
 
 This is where you need the `state_lock` / `Mutex` which essentially, to have 2 independent locks that we can call separately. That way, you can check the state before swapping the internal state.
+
+Technically you can do this:
 	
 ```rust
-		pub fn force_full_compaction(&self) -> Result<()> {
-	        let mut state = {
-		        let mut guard = self.state.read();
-		        guard.as_ref().clone()
-			}
-			
-			let result = self.compact(&task) // long compaction
-			
-			// 
-			let state_lock = self.state_lock.lock();
-			let mut guard = self.state.write();
-			
-			
-			let latest_date = guard.as_ref().clone()
-			
-			apply_result_to_state(latest_date, result);
-			
-	        *guard = Arc::new(latest_date);
+pub fn force_full_compaction(&self) -> Result<()> {
+
+	let state_lock = self.state_lock.lock();
 	
-	        Ok(())
-	    }
+	// this might be long compaction
+	let result = self.compact(&task) 
+	
+	// below is microsecond pointer swap
+	let mut guard = self.state.write();
+	let latest_date = guard.as_ref().clone()
+	
+	apply_result_to_state(latest_date, result);
+	*guard = Arc::new(latest_date);
+
+	Ok(())
+}
 ```
+
+
+I want to 

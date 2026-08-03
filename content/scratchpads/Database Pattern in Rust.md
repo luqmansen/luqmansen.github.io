@@ -179,6 +179,8 @@ Ok(())
 
 If the `memtable` is genuinely lockless data structure, why don't we just put it outside as standalone `Arc` without wrapping it with a RW-lock? The write and read doesn't require `mut` anyway
 
+Like this?
+
 ```rust
 
 struct LsmStorageInnerRwLockLess{
@@ -186,13 +188,7 @@ struct LsmStorageInnerRwLockLess{
 	mutex: Mutext()
 }
 
-```
 
-Like this?
-
-Bing bong! Your code won't compile!
-
-```rust
 impl LsmStorageInnerRwLockLess {
     fn freeze(&self) {
         let _g = self.state_lock.lock();
@@ -209,7 +205,8 @@ impl LsmStorageInnerRwLockLess {
 }
 ```
 
-I can!!
+Bing bong! Your code won't compile!
+
 
 ```rust
 impl LsmStorageInnerRwLockLess {
@@ -225,4 +222,71 @@ impl LsmStorageInnerRwLockLess {
 }
 ```
 
-Yes it compiles, but error 
+I can!!
+
+Yes but error will be on the call site!
+
+(simplified code to reproduce. Online version [here](https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=06ab2d7a438a93cd4278042c6359aff5) 
+```rust
+use std::sync::{Arc, Mutex};
+
+#[derive(Clone)]
+struct State { n: usize }
+
+struct Inner {
+    state: Arc<State>,
+    state_lock: Mutex<()>,
+}
+
+impl Inner {
+    fn freeze(&mut self) {
+        let _g = self.state_lock.lock();
+        let mut s = (*self.state).clone();
+        s.n += 1;
+        self.state = Arc::new(s);
+    }
+}
+
+fn main() {
+    let inner = Arc::new(
+	    Inner { 
+		    state: Arc::new(State { n: 0 }), 
+		    state_lock: Mutex::new(()) 
+	});
+	
+    let flush_thread_handle = Arc::clone(&inner);
+    std::thread::spawn(move || {
+        flush_thread_handle.freeze();
+    });
+    inner.freeze();
+}
+```
+
+The error
+```rust
+
+   Compiling playground v0.0.1 (/playground)
+error[E0596]: cannot borrow data in an `Arc` as mutable
+  --> src/lib.rs:24:9
+   |
+24 |         flush_thread_handle.freeze();
+   |         ^^^^^^^^^^^^^^^^^^^ cannot borrow as mutable
+   |
+   = help: trait `DerefMut` is required to modify through a dereference, but it is not implemented for `Arc<Inner>`
+
+error[E0596]: cannot borrow data in an `Arc` as mutable
+  --> src/lib.rs:26:5
+   |
+26 |     inner.freeze();
+   |     ^^^^^ cannot borrow as mutable
+   |
+   = help: trait `DerefMut` is required to modify through a dereference, but it is not implemented for `Arc<Inner>`
+
+For more information about this error, try `rustc --explain E0596`.
+error: could not compile `playground` (lib) due to 2 previous errors
+
+```
+
+WHYYY???
+
+

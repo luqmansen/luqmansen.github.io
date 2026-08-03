@@ -7,12 +7,15 @@ I'm not sure what to title I should put there. Point is, I want to highlight few
 
 Why? Because once, before I learn rust properly, during reading the [[Database design and implementation]] book, I attempted to follow along and write the code in Rust (original code example is in Java). I was thinking to myself "aight, Rust should be similar to Go, with slightly stricter compiler, right?". Oh boy.... I was wrong. I hitting the compiler more than I thought it would be. I was too naive and jump head-first without equipping myself with the proper tools. At that time, I already speed-ran Rustbook + Rustling exercise, but it's not nearly enough. 
 
-Hence, here, I want to synthesis what I have learn after that, during following this [[LSM in 3 weeks]] course. Most of these patterns are something that observed I know I should've used during my first attempt of writing database in Rust.
+Hence, here, I want to synthesis what I have learned after that, during following this [[LSM in 3 weeks]] course. Most of these patterns are something that observed and I know I should've used during my first attempt of writing database in Rust.
 
 
 ## Serialized Write + RW-Lock
 
-This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. This part was all over the place during the early week 1 of [[LSM in 3 weeks]].  Now, I really want to formalize my understanding. 
+This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. Without this, you bes
+
+
+This part was all over the place during the early week 1 of [[LSM in 3 weeks]].  Now, I really want to formalize my understanding. 
 
 Suppose that these are the core structs of the storage engine you're trying to build:
 ```rust

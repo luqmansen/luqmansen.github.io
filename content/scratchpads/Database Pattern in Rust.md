@@ -75,24 +75,18 @@ Hence, here, I want to synthesis what I have learn after that, during following 
 		Suppose this code
 		
 		```rust
-		pub fn force_full_compaction(&self) -> Result<()> {
-	        let mut state = {
-		        let mut guard = self.state.read();
-		        guard.as_ref().clone()
-			}
-			
-			let result = self.compact(&task) // long compaction
-			
-			// 
-			let mut guard = self.state.write();
-			let latest_date = guard.as_ref().clone()
-			
-			apply_result_to_state(latest_date, result);
-			
-	        *guard = Arc::new(latest_date);
-	
-	        Ok(())
-	    }
+pub fn force_freeze_memtable(&self) -> Result<()> {
+	let mut guard = self.state.write();
+	let mut state = guard.as_ref().clone();
+
+	state.imm_memtables.insert(0, Arc::clone(&state.memtable));
+	let new_memtable = MemTable::create(self.next_sst_id());
+	state.memtable = Arc::new(new_memtable);
+
+	*guard = Arc::new(state);
+
+	Ok(())
+}
 		```
 
 		What's wrong with above code? Essentially, during the second read, there could be 2 compactions that race trying to install the new latest state. There could be a genuine race condition there (lost update)

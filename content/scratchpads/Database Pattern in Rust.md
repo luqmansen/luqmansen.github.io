@@ -207,6 +207,22 @@ impl LsmStorageInnerRwLockLess {
 		// `self` is a `&` reference, so it cannot be written to
     }
 }
-
-
 ```
+
+I can!!
+
+```rust
+impl LsmStorageInnerRwLockLess {
+    fn freeze(&mut self) { // changed to mut!!!!
+        let _g = self.state_lock.lock();
+        
+        let mut s = (*self.state).clone();
+        
+        s.imm_memtables.insert(0, Arc::clone(&self.state.memtable));
+        
+        self.state = Arc::new(s);
+    }
+}
+```
+
+Yes it compiles, but error 

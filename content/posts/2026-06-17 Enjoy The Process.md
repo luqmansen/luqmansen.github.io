@@ -19,7 +19,7 @@ Up until today, it's finally just clicked for me.  Early on when I read the Rust
 
 Now that I think about it, it was also like this when I was learning about the concept of `interface` (eg: java, golang). At that time, it was something that I just cannot understand exactly what's the point. Now, everything just clicked. 
 
-And today, I also start reading a book by Andy Groove "How Query Engines Work". Got a few pages in the beginning and then i stopped and it got me another thinking: "How can people understand all of these stuff?".
+And today, I also start reading a book by Andy Groove [[How Query Engines Work]]. Got a few pages in the beginning and then i stopped and it got me another thinking: "How can people understand all of these stuff?".
 
 Also today (again), I read an [essay by Eaton Phil](https://notes.eatonphil.com/2024-08-24-obsession.html), that I think really hit the nail for me:
 

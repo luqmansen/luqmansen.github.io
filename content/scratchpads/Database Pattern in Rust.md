@@ -5,7 +5,7 @@ date: 2026-08-30
 
 I'm not sure what to title I should put there. Point is, I want to highlight few coding pattern that you can use in Rust when building database, or any stateful application in which the state logic is self-contained in Rust, without any external dependencies (eg: external database). 
 
-Why? Because once, before I learn rust properly, during reading the [[Database design and implementation]] book, I attempted to follow along and write the code in Rust (original code example is in Java). I was thinking to myself "aight, Rust should be similar to Go, with slightly stricter compiler, right?". Oh boy.... I was wrong. I hitting the compiler more than I thought it would be. I was too naive and jump head-first without equipping myself with the proper tools. At that time, I already speed-ran Rustbook + Rustling exercise, but it's not nearly enough. 
+Why? Because once, before I learn rust properly, during reading the [[Database Design and Implementation]] book, I attempted to follow along and write the code in Rust (original code example is in Java). I was thinking to myself "aight, Rust should be similar to Go, with slightly stricter compiler, right?". Oh boy.... I was wrong. I hitting the compiler more than I thought it would be. I was too naive and jump head-first without equipping myself with the proper tools. At that time, I already speed-ran Rustbook + Rustling exercise, but it's not nearly enough. 
 
 Hence, here, I want to synthesis what I have learned after that, during following this [[LSM in 3 weeks]] course. Most of these patterns are something that observed and I know I should've used during my first attempt of writing database in Rust.
 
@@ -217,11 +217,13 @@ impl LsmStorageInnerRwLockLess {
 ```
 
 Bing bong! Your code won't compile!
-	```rust
-	self.state = Arc::new(s);
-        //  ^^^^^^^^^^ 
-        // cannot assign to `self.state`, which is behind a `&` reference
-		// `self` is a `&` reference, so it cannot be written to
+
+```rust
+self.state = Arc::new(s);
+	//  ^^^^^^^^^^ 
+	// cannot assign to `self.state`, which is behind a `&` reference
+	// `self` is a `&` reference, so it cannot be written to
+	
 ```
 
 

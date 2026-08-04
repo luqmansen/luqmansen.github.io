@@ -1,5 +1,3 @@
-
-
 https://howqueryengineswork.com/02-apache-arrow.html
 
 

@@ -309,3 +309,10 @@ error: could not compile `playground` (lib) due to 2 previous errors
 WHYYY???
 
 
+To be continued....
+
+I still want to at least write about 
+- Self-referencing data structure in Rust (for iterator pattern)
+- Higher-Rank Trait Bound blackmagic fuckery
+- Generative Associated Type
+

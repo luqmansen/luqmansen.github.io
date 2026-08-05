@@ -18,7 +18,6 @@ Query Parsing
 - ANTLR
 	- https://tomassetti.me/antlr-mega-tutorial/
 
-
 SQL Feature
 - CTE support
 - ASOF join

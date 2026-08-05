@@ -189,7 +189,6 @@ type Inner struct {
 }  
 ```
 
-
 We should be able to create something equivalent in rust, like this?
 
 ```rust
@@ -308,9 +307,20 @@ error: could not compile `playground` (lib) due to 2 previous errors
 
 why?
 
+So, this is the common newbie mistake when using  `&mut` thinking that it's a mutable and I can freely use it whenever I want (well it kinda), but actually it's not. The `mut` keyword signifies that it's an exclusive access to this variable. That means, there's only one place that allowed to mutate this variable. The only way to get it working is to use `Arc::get_mut` which will only work when the number of strong reference is equal to 1, 
+and that's not going to happen on this code when you're already using `Arc::clone` during the start. 
 
+Back to the golang code, which is super common pattern when you're using mutex
+```go
+type Inner struct {                     
+    mu    sync.Mutex // equal to guards state        
+    state *State                        
+}  
+```
 
+In this code, no one is stopping you from mutating the `state` even without holding the lock.
 
+Rust prevents this by enforcing you to wrap your state inside a lock primitive, either it is a `Mutex` or `RwLock`
 
 To be continued....
 

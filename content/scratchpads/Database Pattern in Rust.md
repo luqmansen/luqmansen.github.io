@@ -78,29 +78,29 @@ There are 2 main access patterns:
 	Suppose this code
 	
 	```rust
-pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
-// first block
-{
-	let state = self.state.read();
-	if state.memtable.approximate_size() < self.target_size { 
-		state.memtable.put(_key, _value);
-		return Ok(())
-}
-
-// second block
-let mut guard = self.state.write();
-let mut state = guard.as_ref().clone();
-
-state.imm_memtables.insert(0, Arc::clone(&state.memtable));
-let new_memtable = MemTable::create(self.next_sst_id());
-state.memtable = Arc::new(new_memtable);
-
-state.memtable.put(_key, _value); 
-
-*guard = Arc::new(state);
-
-Ok(())
-}
+	pub fn put(&self, _key: &[u8], _value: &[u8]) -> Result<()> {
+		// first block
+		{
+			let state = self.state.read();
+			if state.memtable.approximate_size() < self.target_size { 
+				state.memtable.put(_key, _value);
+				return Ok(())
+		}
+		
+		// second block
+		let mut guard = self.state.write();
+		let mut state = guard.as_ref().clone();
+		
+		state.imm_memtables.insert(0, Arc::clone(&state.memtable));
+		let new_memtable = MemTable::create(self.next_sst_id());
+		state.memtable = Arc::new(new_memtable);
+		
+		state.memtable.put(_key, _value); 
+		
+		*guard = Arc::new(state);
+		
+		Ok(())
+	}
 	```
 
 	What's wrong with above code? Essentially, during the second block, there could be 2 threads that race trying to install freeze the memtable and replace it with a new one. There could be a genuine race condition there (lost update of the prev newly installed memtable here.

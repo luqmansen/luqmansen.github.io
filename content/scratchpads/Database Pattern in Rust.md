@@ -302,10 +302,10 @@ In this code, no one is stopping you from mutating the `state` even without hold
 
 Rust prevents this by enforcing you to wrap your state inside a lock primitive, either it is a `Mutex<T>` or `RwLock<T>` (well you can implement your own lock too, but that's for another day)
 
-To be continued....
 
 I still want to at least write about 
 - Self-referencing data structure in Rust (for iterator pattern)
 - Higher-Rank Trait Bound blackmagic fuckery
 - Generative Associated Type
 
+To be continued....

@@ -36,6 +36,7 @@ Query Execution
 
 Formal verification
 - https://queue.acm.org/detail.cfm?id=3819084
+- https://github.com/stonysystems/tla-rs
 
 IO-techniques
 - Async-IO (a la tokio)

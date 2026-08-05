@@ -226,6 +226,7 @@ self.state = Arc::new(s);
 ```
 
 
+Can we make the self `&mut`? 
 ```rust
 impl LsmStorageInnerRwLockLess {
     fn freeze(&mut self) { // changed to mut!!!!
@@ -239,8 +240,6 @@ impl LsmStorageInnerRwLockLess {
     }
 }
 ```
-
-I can!!
 
 Yes but error will be on the call site!
 
@@ -282,38 +281,19 @@ fn main() {
 
 The error
 ```rust
-
-   Compiling playground v0.0.1 (/playground)
 error[E0596]: cannot borrow data in an `Arc` as mutable
   --> src/lib.rs:24:9
-   |
-24 |         flush_thread_handle.freeze();
-   |         ^^^^^^^^^^^^^^^^^^^ cannot borrow as mutable
-   |
-   = help: trait `DerefMut` is required to modify through a dereference, but it is not implemented for `Arc<Inner>`
-
-error[E0596]: cannot borrow data in an `Arc` as mutable
-  --> src/lib.rs:26:5
-   |
-26 |     inner.freeze();
-   |     ^^^^^ cannot borrow as mutable
-   |
-   = help: trait `DerefMut` is required to modify through a dereference, but it is not implemented for `Arc<Inner>`
-
-For more information about this error, try `rustc --explain E0596`.
-error: could not compile `playground` (lib) due to 2 previous errors
-
+ // omitted the rest of the errors
 ```
 
 why?
 
-So, this is the common newbie mistake when using  `&mut` thinking that it's a mutable and I can freely use it whenever I want (well it kinda), but actually it's not. The `mut` keyword signifies that it's an exclusive access to this variable. That means, there's only one place that allowed to mutate this variable. The only way to get it working is to use `Arc::get_mut` which will only work when the number of strong reference is equal to 1, 
-and that's not going to happen on this code when you're already using `Arc::clone` during the start. 
+So, this is the common newbie mistake when using  `&mut` thinking that it's a mutable and they can freely use it whenever they want. It's not. The `mut` keyword signifies that it's an exclusive access to this variable. That means, there's only one place that allowed to mutate this variable. The only way to get it working is to use `Arc::get_mut` which will only work when the number of strong reference is equal to 1, and that's not going to happen on this code when you're already using `Arc::clone`, and at least there are 3 references already during the start of the program.
 
 Back to the golang code, which is super common pattern when you're using mutex
 ```go
 type Inner struct {                     
-    mu    sync.Mutex // equal to guards state        
+    mu    sync.Mutex
     state *State                        
 }  
 ```

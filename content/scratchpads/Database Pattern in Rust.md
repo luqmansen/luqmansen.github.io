@@ -318,9 +318,9 @@ type Inner struct {
 }  
 ```
 
-In this code, no one is stopping you from mutating the `state` even without holding the lock.
+In this code, no one is stopping you from mutating the `state` even without holding the lock. It relies on programmer discipline to prevent race condition.
 
-Rust prevents this by enforcing you to wrap your state inside a lock primitive, either it is a `Mutex` or `RwLock`
+Rust prevents this by enforcing you to wrap your state inside a lock primitive, either it is a `Mutex<T>` or `RwLock<T>` (well you can implement your own lock too, but that's for another day)
 
 To be continued....
 

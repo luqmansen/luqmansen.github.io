@@ -1,14 +1,12 @@
 ---
-title: Database Pattern in Rust
+title: Design Patterns for Writing Database in Rust
 date: 2026-07-30
 ---
+I want to highlight few coding patterns that you can use in Rust when building a database, or any stateful application in which the state logic is self-contained in Rust, without any external dependencies (eg: external database). 
 
-I'm not sure what to title I should put there. Point is, I want to highlight few coding pattern that you can use in Rust when building database, or any stateful application in which the state logic is self-contained in Rust, without any external dependencies (eg: external database). 
+Why? Because once, before I learned rust properly, during reading the [[Database Design and Implementation]] book, I attempted to follow along and write the code in Rust (original code example is in Java). I was thinking to myself "Rust should be similar to Go, with slightly stricter compiler, right?". Oh boy.... I was wrong. I was hitting the compiler errors more than I thought it would be. I was too naive and jump head-first without equipping myself with the proper knowledge. At that time, I was already speed-ran Rustbook + Rustling exercise, but it's not nearly enough. 
 
-Why? Because once, before I learn rust properly, during reading the [[Database Design and Implementation]] book, I attempted to follow along and write the code in Rust (original code example is in Java). I was thinking to myself "aight, Rust should be similar to Go, with slightly stricter compiler, right?". Oh boy.... I was wrong. I hitting the compiler more than I thought it would be. I was too naive and jump head-first without equipping myself with the proper tools. At that time, I already speed-ran Rustbook + Rustling exercise, but it's not nearly enough. 
-
-Hence, here, I want to synthesis what I have learned after that, during following this [[LSM in 3 weeks]] course. Most of these patterns are something that observed and I know I should've used during my first attempt of writing database in Rust.
-
+Hence, I want to synthesis what I have learned after that, during following this [[LSM in 3 weeks]] course. Most of these patterns are something that observed and I should've known during my first attempt of writing database in Rust.
 
 ## Serialized Write + RW-Lock
 
@@ -225,11 +223,10 @@ self.state = Arc::new(s);
 	
 ```
 
-
 Can we make the self `&mut`? 
 ```rust
 impl LsmStorageInnerRwLockLess {
-    fn freeze(&mut self) { // changed to mut!!!!
+    fn freeze(&mut self) { // changed to &mut!!!!
         let _g = self.state_lock.lock();
         
         let mut s = (*self.state).clone();
@@ -243,7 +240,7 @@ impl LsmStorageInnerRwLockLess {
 
 Yes but error will be on the call site!
 
-(simplified code to reproduce. Online version [here](https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=06ab2d7a438a93cd4278042c6359aff5) 
+(simplified code)
 ```rust
 use std::sync::{Arc, Mutex};
 
@@ -283,14 +280,14 @@ The error
 ```rust
 error[E0596]: cannot borrow data in an `Arc` as mutable
   --> src/lib.rs:24:9
- // omitted the rest of the errors
 ```
 
 why?
 
-So, this is the common newbie mistake when using  `&mut` thinking that it's a mutable and they can freely use it whenever they want. It's not. The `mut` keyword signifies that it's an exclusive access to this variable. That means, there's only one place that allowed to mutate this variable. The only way to get it working is to use `Arc::get_mut` which will only work when the number of strong reference is equal to 1, and that's not going to happen on this code when you're already using `Arc::clone`, and at least there are 3 references already during the start of the program.
+So, this is the common newbie mistake when using  `&mut` thinking that it's a mutable and they can freely use it whenever they want. It's not. The `mut` keyword signifies that it's an exclusive access to this variable. That means, there's only one place that allowed to mutate this variable at any given time. That's not going to happen on this code, because when you're already using `Arc::clone` at least there are 3 references already during the start of the program. The only way to get it working is to use `Arc::get_mut` which will returns `Options<T>`  i.e. only work when the number of strong reference is equal to 1, otherwise it will always be `None`.
 
-Back to the golang code, which is super common pattern when you're using mutex
+Back to the golang code which is super common pattern when you're using mutex. Btw, I will use Golang as an example a lot to bridge my understanding, as I'm very familiar with it.
+
 ```go
 type Inner struct {                     
     mu    sync.Mutex
@@ -298,10 +295,7 @@ type Inner struct {
 }  
 ```
 
-In this code, no one is stopping you from mutating the `state` even without holding the lock. It relies on programmer discipline to prevent race condition.
-
-Rust prevents this by enforcing you to wrap your state inside a lock primitive, either it is a `Mutex<T>` or `RwLock<T>` (well you can implement your own lock too, but that's for another day)
-
+In this code, no one is stopping you from mutating the `state` even without holding the lock. It relies on programmer discipline to prevent race condition. Rust prevents this by enforcing you to wrap your state inside a lock primitive, either it is a `Mutex<T>` or `RwLock<T>` (well you can implement your own lock too, but that's for another day).
 
 I still want to at least write about 
 - Self-referencing data structure in Rust (for iterator pattern)

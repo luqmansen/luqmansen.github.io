@@ -108,3 +108,5 @@ File `seek`'s task
 
 
 ## The Database System and the OS
+
+<img src="https://emoticons.assets.hzchu.top/emoticons/Blob/blobcatread.png" alt="Blob_blobcatread" title="Blob_blobcatread" class="emoji-image m-0" width=25px style="margin: 0px;"> 

@@ -17,7 +17,7 @@ Still relevant even for modern day SSD
 just a requested sector, the disk drive can read the entire track containing that sector
 into the cache, in the hope that other sectors of the track will be requested later
 
-Even modern OS's also do the same. So, multiple level of pre-fetching, will it be redundant or make read even more faster? 
+Even modern OS's also do the same. So, multiple level of pre-fetching, will it be redundant or make read even more faster?  #to-read 
 
 >The set of tracks having the same track number is called a cylinder, because if you
 look at those tracks from the top of the disk, they describe the outside of a cylinder.
@@ -110,5 +110,23 @@ File `seek`'s task
 
 
 ## The Database System and the OS
-<img src="https://emoticons.assets.hzchu.top/emoticons/Blob/blobcatread.png" alt="Blob_blobcatread" title="Blob_blobcatread" class="emoji-image m-0" width=25px style="margin: 0px;"> 
+Basically the classic telling us to not rely on OS filesystem, because of less control over block, pages, io buffers, etc <img src="https://emoticons.assets.hzchu.top/emoticons/Blob/blobcatread.png" alt="Blob_blobcatread" title="Blob_blobcatread" class="emoji-image m-0" width=25px style="margin: 0px;"> 
+Not relying on OS filesystem will also makes it super hard, i.e. mounting disk as raw disk that we take control of *physical* block.
+Middle ground is to use treat OS files as "raw disk" using logical file block, i.e. it's not an actual block, we still rely on OS to translates these logical blocks into physical block via `seek`. Conventional wisdom accepts this tradeoff.  I may interested in modern-day hardware-accelerated logical-to-physical block translation #to-read
 
+## The SimpleDB File Manager
+
+Coding part, let's goo <img src="https://emoticons.assets.hzchu.top/emoticons/Blob/blobcatalt.png" alt="Blob_blobcatalt" title="Blob_blobcatalt" class="emoji-image m-0" width=25px style="margin: 0px;"> 
+
+How files in SimpleDB are organized:
+1. One table one file
+2. One index one file
+3. One WAL file for all (?)
+4. Several catalog file (i.e. table metadata)
+
+3 classes, 
+- BlockId, 
+- Page, 
+- and FileMgr
+
+How to convert them into Rust? eg: do I need separate abstraction or I can do 1-1 mapping?

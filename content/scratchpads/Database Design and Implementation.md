@@ -129,4 +129,20 @@ How files in SimpleDB are organized:
 - Page, 
 - and FileMgr
 
-How to convert them into Rust? eg: do I need separate abstraction or I can do 1-1 mapping?
+How to convert them into Rust? eg: do I need separate abstraction or I can do 1-1 mapping? I think so, at least for this part. 
+
+
+####
+> Its first constructor creates a page that gets its memory from an operating system I/O buffer; this constructor is used by the buffer manager. Its second constructor creates a page that gets its memory from a Java array
+
+I wonder if i should implement  `from` trait ? It's only 2, probably just normal `fn` is enough
+
+
+>A page can hold three value types: ints, strings, and“blobs” (i.e., arbitrary arrays of bytes).
+
+I'm thinking whether or not I should push these kind of convenience methods down to lowest level (eg: page level) or I should just keep as minimal interface as possible (i.e. just accepts `&[u8]` instead of `&str` )?
+
+>A client can store a value at any offset of the page but is responsible for knowing what values have been stored where. An attempt to get a value from the wrong offset will have unpredictable results.
+
+I hate this part the most... handwritten byte serde is the worst. Let me search for library for doing this part...
+

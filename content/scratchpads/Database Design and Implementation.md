@@ -1,5 +1,6 @@
 by Edward Sciore
 
+My personal note during reading this book.
 
 # Chapter 3: Disk and File Management
 - Abstracts 2 OS interfaces: block-level and file-level

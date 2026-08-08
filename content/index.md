@@ -9,7 +9,8 @@ I have deep interest in data system. I'm currently learning about storage system
 
 ---
 *AI usage disclaimer:*
-Mandatory section these days...sigh
+
+Mandatory section these days <img src="https://emoticons.assets.hzchu.top/emoticons/Blob/A_BlobCat_REEEE.png" alt="Blob_A_BlobCat_REEEE" title="Blob_A_BlobCat_REEEE" class="emoji-image m-0" width=25px style="margin: 0px;"> 
 
 I hate reading AI-written articles as much as you do. All of the articles here are written by me. You could probably tell by the grammatical errors here and there, but hey, imperfection is part of what makes us human :D
 

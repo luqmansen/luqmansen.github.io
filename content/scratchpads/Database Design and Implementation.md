@@ -137,6 +137,8 @@ How to convert them into Rust? eg: do I need separate abstraction or I can do 1-
 
 I wonder if i should implement  `from` trait ? It's only 2, probably just normal `fn` is enough
 
+ ai answer: 
+
 
 >A page can hold three value types: ints, strings, and“blobs” (i.e., arbitrary arrays of bytes).
 
@@ -150,4 +152,5 @@ I hate this part the most... handwritten byte serde is the worst. Let me search 
 
 >The read method reads the contents of the speci ed block into the specifed
 page. The write method performs the inverse operation, writing the contents of a
-page to the speci ed block
+page to the specified block
+

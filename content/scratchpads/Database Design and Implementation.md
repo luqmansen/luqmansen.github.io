@@ -137,7 +137,7 @@ How to convert them into Rust? eg: do I need separate abstraction or I can do 1-
 
 I wonder if i should implement  `from` trait ? It's only 2, probably just normal `fn` is enough
 
- ai answer: 
+ <img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/party/party-robot-face.png" alt="Party_party-robot-face" title="Party_party-robot-face" class="emoji-image m-0" width=25px style="margin: 0px;">  (ai answer): from is from type A to type B conversion. Using simple method is correct.
 
 
 >A page can hold three value types: ints, strings, and“blobs” (i.e., arbitrary arrays of bytes).
@@ -150,7 +150,10 @@ I hate this part the most... handwritten byte serde is the worst. Let me search 
 
 #### FileManager
 
->The read method reads the contents of the speci ed block into the specifed
+>The read method reads the contents of the specified block into the specifed
 page. The write method performs the inverse operation, writing the contents of a
 page to the specified block
+
+This was quite unnatural to me first time reading and coding it, and it still is.
+Probably because earlier discussion on trying to model logical block ops via filesystem.
 

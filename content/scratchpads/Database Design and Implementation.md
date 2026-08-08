@@ -148,4 +148,6 @@ I hate this part the most... handwritten byte serde is the worst. Let me search 
 
 #### FileManager
 
->
+>The read method reads the contents of the speci ed block into the specifed
+page. The write method performs the inverse operation, writing the contents of a
+page to the speci ed block

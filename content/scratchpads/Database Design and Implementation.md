@@ -132,7 +132,7 @@ How files in SimpleDB are organized:
 How to convert them into Rust? eg: do I need separate abstraction or I can do 1-1 mapping? I think so, at least for this part. 
 
 
-####
+#### Page
 > Its first constructor creates a page that gets its memory from an operating system I/O buffer; this constructor is used by the buffer manager. Its second constructor creates a page that gets its memory from a Java array
 
 I wonder if i should implement  `from` trait ? It's only 2, probably just normal `fn` is enough
@@ -146,3 +146,6 @@ I'm thinking whether or not I should push these kind of convenience methods down
 
 I hate this part the most... handwritten byte serde is the worst. Let me search for library for doing this part...
 
+#### FileManager
+
+>

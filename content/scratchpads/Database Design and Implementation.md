@@ -24,5 +24,6 @@ look at those tracks from the top of the disk, they describe the outside of a cy
 it's nice to know the origin of a given term
 
 >The term disk striping comes from the following imagery: If you imagine that each small disk is painted in a different color, then the virtual disk looks like it has stripes, with its sectors painted in alternating colors
+ 
+also this <img src="https://emoticons.assets.hzchu.top/emoticons/Blob/blobcatphoto.png" alt="Blob_blobcatphoto" title="Blob_blobcatphoto" class="emoji-image"> 
 
-also this 

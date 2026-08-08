@@ -45,6 +45,7 @@ Tracking available block
 	
 2. Free List
 	Not going to go to the technical details, but i just hate this kind data structure <img src="https://emoticons.assets.hzchu.top/emoticons/Blob/blobcatnotlikethis.png" alt="Blob_blobcatnotlikethis" title="Blob_blobcatnotlikethis" class="emoji-image m-0" width=25px style="margin: 0px;"> 
+	
 	The idea that, to allocate some N blocks, you have to keep traversing until you find enough space... 
 	![[free-list.png]]
 	It is space efficient, but the user pays somewhere the cost somewhere else. 

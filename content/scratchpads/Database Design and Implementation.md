@@ -157,3 +157,6 @@ page to the specified block
 This was quite unnatural to me first time reading and coding it, and it still is.
 Probably because earlier discussion on trying to model logical block ops via filesystem.
 
+>Note how the file manager always reads or writes a block-sized number of bytes from a file and always at a block boundary. In doing so, the file manager ensures that each call to read, write, or append will incur exactly one disk access.
+
+Basically page access.

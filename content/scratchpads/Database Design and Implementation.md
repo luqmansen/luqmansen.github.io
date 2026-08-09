@@ -244,3 +244,12 @@ Buffer Mgr
 2. Don’t Rely on OS's Virtual Memory 
 	 Q: I know that I can implement buffer management to control disk access, but how do I know if it actually works? i.e. my db page isn't unnecessarily swapped/paged out by OS when it's still in use. Where is the line between trusting OS cache (Not MMAP) or disk cache (hardware cache)
 	Test harness that test crash recovery ability is one way, but I want more deterministic confirmation
+	
+	<img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/party/party-robot-face.png" alt="Party_party-robot-face" title="Party_party-robot-face" class="emoji-image m-0" width=25px style="margin: 0px;"> : Few things 
+		1. O_DIRECT for bypass OS page cache. Unfortunately doesn't exists in Mac. This will require ultimate granular write control, because frankly, not all writes need to be directly to disk. Only things like WAL that requires it, otherwise, Regular write/update can just write to OS cache safely. 
+		2. O_DIRECT bypasses the page cache, but the OS virtual memory manager (VMM) can still swap out your user-space buffer pool memory (anonymous memory)
+		How to verify
+		 - No Major page faults during buffer access. This utility shoudl be available in stdlib (`getrusage()`) https://docs.rs/libc/latest/libc/fn.getrusage.html this usage should not increase after accessing buffered page.
+		- Inspect /proc/{pid}/smaps
+		- eBPF
+			Trace whether I/O requests originate from my code thread system calls (eg: pwritev2) rather than kernel page-fault routines (do_anonymous_page or filemap_fault)

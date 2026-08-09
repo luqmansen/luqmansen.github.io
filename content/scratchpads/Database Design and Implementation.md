@@ -239,4 +239,6 @@ Buffer Mgr
 
 ## Principle of Memory Management in DBs
 1. Minimize Disk Access
-
+	Write as much as possible to page (ram) and flush to disk in batch
+	
+2. Don’t Rely on Virtual Memory 

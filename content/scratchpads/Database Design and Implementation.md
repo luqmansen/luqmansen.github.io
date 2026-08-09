@@ -241,4 +241,5 @@ Buffer Mgr
 1. Minimize Disk Access
 	Write as much as possible to page (ram) and flush to disk in batch
 	
-2. Don’t Rely on Virtual Memory 
+2. Don’t Rely on OS's Virtual Memory 
+	 Q: I know that I can implement buffer management to control disk access, but how do I know if it actually works? i.e. my db page isn't unnecessarily swapped/paged out by OS when it's still in use.  I probably need a test harness that test crash recovery ability 

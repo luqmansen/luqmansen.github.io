@@ -174,3 +174,52 @@ public synchronized BlockId append(String filename) {
 ```
 
 I hate doing this in Rust. There's a need for syncronization point. I want to avoid it, but then, because of block is calculated on-the-fly i.e. not persisted anywhere, I cannot leverage lockless structure like skipmap that i already have.  
+
+Ok I spent more time than I thought would be
+I learned how to write generics to access my page's internal buffer
+
+```rust
+pub struct Page {
+    // buffer structure
+    // | data len | value
+    // | i16 (2B) | varlen
+    pub(crate) buffer: Vec<u8>,
+}
+
+pub(crate) trait Readable<'a, 'b>: Sized {
+    fn read(page: &'b Page, offset: usize) -> Self
+    where
+        'b: 'a;
+}
+
+pub(crate) trait Writable: Sized {
+    fn write(self, page: &mut Page, offset: usize);
+}
+
+impl<'a, 'b> Readable<'a, 'b> for i32 {
+    fn read(page: &'b Page, offset: usize) -> Self {
+        BigEndian::read_i32(&page.buffer[offset as usize..])
+    }
+}
+
+impl Writable for i32 {
+    fn write(self, page: &mut Page, offset: usize) {
+        BigEndian::write_i32(&mut page.buffer[offset..], self);
+    }
+}
+
+// and few more types
+```
+
+Also, I made a shortcut by using lockless `crossbeam_skiplist::SkipMap` library for make my life easier 
+
+```rust
+pub struct FileManager {
+    ...
+    files: Arc<SkipMap<String, Arc<FileHandle>>>,
+}
+
+```
+
+The rest are in this [commit](https://github.com/luqmansen/asdf/commit/46a687bb7e9d13fa14b8136855a7b8907c65c587#diff-42cb6807ad74b3e201c5a7ca98b911c5fa08380e942be6e4ac5807f8377f87fcR12-R15) 
+

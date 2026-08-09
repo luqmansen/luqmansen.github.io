@@ -256,3 +256,5 @@ Buffer Mgr
 		- eBPF
 			Trace whether I/O requests originate from my code thread system calls (eg: pwritev2) rather than kernel page-fault routines (do_anonymous_page or filemap_fault)
 
+## Log Manager
+Q: Diving more through this chapter, now I realize that this book really fixated on the diea that disk write must be aligned 1 page at a time, even for this log manager, which essentially append only. Quite contrast with [[LSM in 3 weeks]] which it has no regard 

@@ -258,3 +258,9 @@ Buffer Mgr
 
 ## Log Manager
 Q: Diving more through this chapter, now I realize that this book really fixated on the diea that disk write must be aligned 1 page at a time, even for this log manager, which essentially append only. Quite contrast with [[LSM in 3 weeks]] which it has no regard of page, granted that 1 flush of SST is typically 64 - 128MB. 
+
+Also talking about append only structure. I was thinking that it is still considered slow write if we're talking about spinning splatter. Because the wal flush might interleave with other operation (read / write) in other sector, so the mechanical head isn't stay still on the same location where WAL is.
+
+<img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/party/party-robot-face.png" alt="Party_party-robot-face" title="Party_party-robot-face" class="emoji-image m-0" width=25px style="margin: 0px;">  : this is way on spinning disk, typically WAL is written to separate disk drive/volume.
+
+Clever!

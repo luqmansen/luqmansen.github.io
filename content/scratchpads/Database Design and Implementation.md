@@ -242,4 +242,5 @@ Buffer Mgr
 	Write as much as possible to page (ram) and flush to disk in batch
 	
 2. Don’t Rely on OS's Virtual Memory 
-	 Q: I know that I can implement buffer management to control disk access, but how do I know if it actually works? i.e. my db page isn't unnecessarily swapped/paged out by OS when it's still in use.  I probably need a test harness that test crash recovery ability 
+	 Q: I know that I can implement buffer management to control disk access, but how do I know if it actually works? i.e. my db page isn't unnecessarily swapped/paged out by OS when it's still in use. Where is the line between trusting OS cache (Not MMAP) or disk cache (hardware cache)
+	Test harness that test crash recovery ability is one way, but I want more deterministic confirmation

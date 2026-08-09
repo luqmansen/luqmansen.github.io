@@ -161,4 +161,16 @@ Probably because earlier discussion on trying to model logical block ops via fil
 
 Basically page access.
 
->
+```java
+public synchronized BlockId append(String filename) {
+	int newblknum = size(filename);
+	BlockId blk = new BlockId(filename, newblknum);
+	byte[] b = new byte[blocksize];
+	try {
+	RandomAccessFile f = getFile(blk.fileName());
+	f.seek(blk.number() * blocksize);
+	f.write(b);
+}
+```
+
+I hate doing this in Rust. There's a need for syncronization point. I want to avoid it, but then, because of block is calculated on-the-fly i.e. not persisted anywhere, I cannot leverage lockless structure like skipmap that i already have.  

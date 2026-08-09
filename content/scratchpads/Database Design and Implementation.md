@@ -228,6 +228,8 @@ I skipped over few things, like adding `ASCII encoding` length, because i think 
 
 Also, there's probably bunch of edge cases optimization, especially in the file flushing mechanism. Book took the easy path by always flushing to disk for every write. Not wrong but might not necessary for every write (i.e. it's ok to cache some writes in OS cache). The only place where it matters is probably on WAL
 
+Eg: I want to try `FileExt::write_vectored_at` to write multiple buffer on single syscall (well it's 2 but anyway)
+
 
 # Chapter 4: Memory Management
 

@@ -221,5 +221,9 @@ pub struct FileManager {
 
 ```
 
+
 The rest are in this [commit](https://github.com/luqmansen/asdf/commit/46a687bb7e9d13fa14b8136855a7b8907c65c587#diff-42cb6807ad74b3e201c5a7ca98b911c5fa08380e942be6e4ac5807f8377f87fcR12-R15) 
+
+I skipped over few things, like adding `ASCII encoding` length, because i think directly using `&[u8]` is more idiomatic for rust. For java,  maybe it's important because string -> bytes conversion is very dependent on the encoding used.
+
 

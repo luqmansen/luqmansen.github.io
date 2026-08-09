@@ -160,3 +160,5 @@ Probably because earlier discussion on trying to model logical block ops via fil
 >Note how the file manager always reads or writes a block-sized number of bytes from a file and always at a block boundary. In doing so, the file manager ensures that each call to read, write, or append will incur exactly one disk access.
 
 Basically page access.
+
+>

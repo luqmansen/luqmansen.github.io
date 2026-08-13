@@ -287,9 +287,34 @@ to disk; instead, the log manager chooses when to write log records to disk
 
 Oh, so technically we can write larger page / batching more than one pages together <img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/blob/blob-evil-think.png" alt="Blob_blob-evil-think" title="Blob_blob-evil-think" class="emoji-image m-0" width=25px style="margin: 0px;">
 
-> The argument to flush is the LSN of a log record; the method ensures that this log record (and all previous log records) is written to disk.
+--
+
+I'm done with Log Manager. I hate to admit but i'm fucking dumb on this. It took much time just to debug my implementation of log iterator. 
+
+Also, I should've learn about leveraging rust's type system that makes "invalid state unrepresentable"
+
+For example, tracking the iterator state using hand-rolled cursor implementation is pain in the butt. 
+
+```rust
+
+// Cursor::At(98)              Cursor::Exhausted
+// ┌────────┬────────┐         ┌────────┬────────┐
+// │ tag  0 │   98   │         │ tag  1 │ unused │
+// └────────┴────────┘         └────────┴────────┘
+//   8 bytes  8 bytes            16 bytes total
+
+enum Cursor {
+    At(usize),
+    Exhausted,
+}
+```
+
+This won't completely eliminate your bug, can make it slightly less painful. However, this will only be as good as how good you model your invariants. This require a lot of exercise and frankly I don't have that much experience. However, I do know that you can make it even more painful if you modeled it improperly though... <img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/meow/meow-reach-sad-reverse.png" alt="Meow_meow-reach-sad-reverse" title="Meow_meow-reach-sad-reverse" class="emoji-image m-0" width=25px style="margin: 0px;"> 
 
 
+## Buffer Manager
+This is also hard. Let's try how much we can push the state modeling here.
 
+> Page pinning.
 
-
+On the read side, it has some resemblances with how `RWLock` works. I still have unresolved questions of how far we can use OS locking primitives for database locking (oh wait, maybe this is for transaction chapter.)

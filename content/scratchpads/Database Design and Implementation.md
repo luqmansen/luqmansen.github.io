@@ -325,3 +325,10 @@ Buffer Pool
 	- status 
 	- buffer
 ```
+
+>there are only two reasons why a buffer will ever need to write a modified page to disk
+>1. Needs to be replaced to other block
+>2. Force flush by recovery manager
+
+**Buffer replacement strategies**
+

@@ -267,7 +267,16 @@ Clever!
 
 >As far as the log manager is concerned, a log record is an arbitrarily sized byte array;  it saves the array in the log file but has no idea what its contents denote
 
-<img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/blob/blob-evil-think.png" alt="Blob_blob-evil-think" title="Blob_blob-evil-think" class="emoji-image m-0" width=200px style="margin: 0px;"> 
+I forgot this part, but I believe upstream will decide what's written here. Quite modular per se. So up until this point, the abstraction is 
+
+```mermaid
+flowchart BT
+    Block --> Page
+    Page --> FileManager
+    FileManager --> LogManager
+
+
+```
 
 >The return value from append identifies the new log record; this identifier is called its log sequence number (or LSN).
 

@@ -318,3 +318,10 @@ This is also hard. Let's try how much we can push the state modeling here.
 > Page pinning.
 
 On the read side, it has some resemblances with how `RWLock` works. I still have unresolved questions of how far we can use OS locking primitives for database locking (oh wait, maybe this is for transaction chapter.)
+
+```
+Buffer Pool
+- Page
+	- status 
+	- buffer
+```

@@ -342,4 +342,5 @@ Strategies
 	- Seq. traversal, choose whatever first found
 	- very bad
 - FIFO
-	- choose 
+	- choose oldest buffer
+	- bad when, eg: 

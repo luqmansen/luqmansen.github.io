@@ -351,28 +351,3 @@ Strategies
 	- This is like a circular ring with a cursor that bookmark latest location of the latest replacement.
 		Quote: "The idea is that if a page is frequently used, there is a high probability that it will be pinned when its turn for replacement arrives. If so, then it is skipped over and given “another chance.”
 
-```java
-BufferMgr
-	public BufferMgr(FileMgr fm, LogMgr lm, int numbuffs);
-	
-	public Buffer pin(BlockId blk);
-	
-	public void unpin(Buffer buff);
-	
-	public int available();
-	
-	public void flushAll(int txnum);
-
-Buffer
-	public Buffer(FileMgr fm, LogMgr lm);
-	
-	public Page contents();
-	
-	public BlockId block();
-	
-	public boolean isPinned();
-	
-	public void setModified(int txnum, int lsn);
-	
-	public int modifyingTx();
-```

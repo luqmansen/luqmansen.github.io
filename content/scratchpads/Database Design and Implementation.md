@@ -351,3 +351,4 @@ Strategies
 	- This is like a circular ring with a cursor that bookmark latest location of the latest replacement.
 		Quote: "The idea is that if a page is frequently used, there is a high probability that it will be pinned when its turn for replacement arrives. If so, then it is skipped over and given “another chance.”
 
+  

@@ -340,7 +340,7 @@ those pages will not be needed for the longest amount of time
 Strategies
 - Naive
 	- Seq. traversal, choose whatever first found
-	- very bad
+	- very bad. Don't even think of it
 - FIFO
 	- choose oldest buffer
 	- bad when, eg: catalog pages would've been the oldest but we want to keep them there. 
@@ -348,4 +348,9 @@ Strategies
 	- choose last accessed buffer
 	- effective for general-purpose buffer
 - Clock
-	- 
+	- This is like a circular ring with a cursor that bookmark latest location of the latest replacement.
+		Quote: "The idea is that if a page is frequently used, there is a high probability that it will be pinned when its turn for replacement arrives. If so, then it is skipped over and given “another chance.”
+
+```rust
+
+```

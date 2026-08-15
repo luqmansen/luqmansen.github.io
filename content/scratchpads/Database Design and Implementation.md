@@ -344,7 +344,8 @@ Strategies
 - FIFO
 	- choose oldest buffer
 	- bad when, eg: catalog pages would've been the oldest but we want to keep them there. 
-	How to make it better
-	- make each buffer keep last replaced time
-	- order by it
+- LRU
+	- choose last accessed buffer
+	- effective for general-purpose buffer
+- Clock
 	- 

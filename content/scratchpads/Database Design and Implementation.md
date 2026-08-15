@@ -339,4 +339,7 @@ those pages will not be needed for the longest amount of time
 
 Strategies
 - Naive
-	- Seq. traversal, very 
+	- Seq. traversal, choose whatever first found
+	- very bad
+- FIFO
+	- choose 

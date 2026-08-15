@@ -343,4 +343,4 @@ Strategies
 	- very bad
 - FIFO
 	- choose oldest buffer
-	- bad when, eg: 
+	- bad when, eg: catalog pages would've been the oldest but we want to keep them there. 

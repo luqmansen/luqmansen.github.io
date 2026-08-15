@@ -322,8 +322,10 @@ On the read side, it has some resemblances with how `RWLock` works. I still have
 ```
 Buffer Pool
 - Page
+  ----
 	- status 
 	- buffer
+	  
 ```
 
 >there are only two reasons why a buffer will ever need to write a modified page to disk
@@ -335,3 +337,6 @@ Buffer Pool
 >Given the set of unpinned pages, the buffer manager needs to decide which of
 those pages will not be needed for the longest amount of time
 
+Strategies
+- Naive
+	- Seq. traversal, very 

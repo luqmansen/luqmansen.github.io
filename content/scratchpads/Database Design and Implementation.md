@@ -332,3 +332,6 @@ Buffer Pool
 
 **Buffer replacement strategies**
 
+>Given the set of unpinned pages, the buffer manager needs to decide which of
+those pages will not be needed for the longest amount of time
+

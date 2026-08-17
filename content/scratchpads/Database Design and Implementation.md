@@ -472,4 +472,8 @@ enum {
 }
 ```
 
-**5.3.2 Log Rec** 
+**5.3.2 Rollback** 
+
+recall that we write log record backward, it's because we doing rollback, we basically undo each operation from the most recent one, 1-1 (see `update` log record above, it contains prev and new value for given row)
+
+

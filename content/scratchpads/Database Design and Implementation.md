@@ -502,4 +502,5 @@ but require pinning alot of buffers, may risk of buffer contention
 
 
 **5.3.5 WAL**
-
+basically the log we've been talking about it a WAL. 
+( i wish the book spoiler it earlier)

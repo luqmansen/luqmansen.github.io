@@ -458,3 +458,18 @@ The programming exercise is also really interesting. Let's revisit that later on
 This is basically write ahead log. 
 Each log needs its own type(we'll use rust enum tag)
 interestingly, the update needs to be specific. I thought i could simply add extra subtag for an arbitrary update operation
+
+```rust
+
+enum {
+	start{id},
+	
+	commit{id},
+	
+	rollback{id},
+		
+	update{id, filename, blocknum, offset, prev_value, new_value }
+}
+```
+
+**5.3.2 Log Rec** 

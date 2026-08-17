@@ -476,4 +476,13 @@ enum {
 
 recall that we write log record backward, it's because we doing rollback, we basically undo each operation from the most recent one, 1-1 (see `update` log record above, it contains prev and new value for given row)
 
-	
+
+**REDO**
+
+2 stages
+stage-1
+undo log -> reads backward, undo uncommited logs
+
+stage 2 
+redo log -> redo commited transactions that hasn't been written to disk yet. reads forward. It gathers the list of commited tx from stage 1 ... 2 birds 1 stone <img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/blob/blob-bird.png" alt="Blob_blob-bird" title="Blob_blob-bird" class="emoji-image m-0" width=25px style="margin: 0px;"> 
+

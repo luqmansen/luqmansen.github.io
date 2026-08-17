@@ -351,4 +351,91 @@ Strategies
 	- This is like a circular ring with a cursor that bookmark latest location of the latest replacement.
 		Quote: "The idea is that if a page is frequently used, there is a high probability that it will be pinned when its turn for replacement arrives. If so, then it is skipped over and given “another chance.”
 
-  
+
+**Implementation Notes**
+There're lots of micro optimization can be done, especially on this lock structuring
+
+ Now, buffer miss will force serialize the read and let everyone  waits for slow 2x io lookup (flush + read)  consider to make these non blocking for other reader and
+ make only lock the final "swap".
+ 
+ Also, apparently I cannot just copy the design from the `mini-lsm` as is around the state read-write management. Mainly because buffer manager is not immutable as in LSM-tree, i.e. the code around pin-unpin are heavy R-W-U.
+ 
+ At this point, I feel like if you want to push more micro optimization by having more and more granular locksssss 
+
+Let me save the session here for my future refactor [[SimpleDB Buffer Manager]]
+
+
+**Quizzesssss**
+
+>The code for LogMgr.iterator calls flush. Is this call necessary?Explain.
+
+ Since write is buffered to ram, creating a log needs to read whatever we have after creation.
+ 
+ We can not flush but it will require reading from page (in-mem) then switch to reading the file. Micro optimization 
+
+
+>4.3. Can more than one buffer ever be assigned to the same block? Explain.
+
+No, it should be one the the invariant.
+
+Otherwise, 2 writes might ended up overwriting each other if flushing is interleaved.
+
+
+>4.4. The buffer replacement strategies in this chapter do not distinguish between
+modified and unmodified pages when looking for an available buffer. A
+possible improvement is for the buffer manager to always replace an
+unmodified page whenever possible.
+(a) Give one reason why this suggestion could reduce the number of disk
+accesses made by the buffer manager.
+(b) Give one reason why this suggestion could increase the number of disk
+accesses made by the buffer manager.
+(c) Do you think strategy is worthwhile? Explain.
+
+
+Answer:
+
+This is apparently a nuance question.
+Let's answer from C: the answer is "it depends". We need to measure the workload 
+
+It depends on the workload.
+A -> evicts clean page 
+For write heavy workload to the same dirty page, if we keep dirty page, we'll avoid evict it now and prevent near future load in other slot
+
+B -> evict dirty page
+For hot clean page that will be read repeatedly, dirty page is less useful here
+
+
+#revisit-later
+>Another possible buffer replacement strategy is least recently modified: the
+buffer manager chooses the modified buffer having the lowest LSN. Explain
+why such a strategy might be worthwhile.
+
+In a way, this is almost similar with LRU, except we track the LSN instead of just purely access time. I mean it always make sense? least LSN means that page hasn't been updated for a while. Especially for write heavy workload. 
+For read heavy, i don't think this matter, or even harmful
+
+
+
+> 4.6. Suppose that a buffer page has been modified several times without being
+written to disk. The buffer saves only the LSN of the most recent change and
+sends only this LSN to the log manager when the page is finally flushed.
+Explain why the buffer doesn’t need to send the other LSNs to the log
+manager.
+
+
+>4.7. Consider the example pin/unpin scenario of Fig. 4.9a, together with the
+additional operations pin(60); pin(70). For each of the four replacement
+strategies given in the text, draw the state of the buffers, assuming that the
+buffer pool contains five buffers.
+
+>4.8. Starting from the buffer state of Fig. 4.9b, give a scenario in which:
+(a) The FIFO strategy requires the fewest disk accesses
+(b) The LRU strategy requires the fewest disk accesses
+(c) The clock strategy requires the fewest disk accesses
+
+>4.9. Suppose that two different clients each want to pin the same block but are
+placed on the wait list because no buffers are available. Consider the imple-
+mentation of the SimpleDB class BufferMgr. Show that when a single
+buffer becomes available, both clients will be able to use it.
+
+
+The programming exercise is also really interesting. Let's revisit that later once we're completed the whole DB #revisit-later

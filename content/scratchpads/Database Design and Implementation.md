@@ -490,3 +490,9 @@ actually, redo doesn't care about what states of the disk, that is, it may have 
 
 **5.3.4 Undo-Only and Redo-Only Recovery**
 
+**Undo-Only**
+before any commit, you force flush the buffer
+this, we can be sure that commit = written to disk
+we skip redo all the way.
+
+**Redo-Only**

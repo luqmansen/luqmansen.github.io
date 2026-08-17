@@ -439,3 +439,22 @@ buffer becomes available, both clients will be able to use it.
 
 
 The programming exercise is also really interesting. Let's revisit that later once we're completed the whole DB #revisit-later
+
+
+# Chapter 5: TRANSAXTIONSSSS
+
+**5.3 Recovery manageemnt**
+1. write log rec
+2. rollback
+3. recover
+
+**5.3.1 Log Rec** 
+- start
+- comit
+- rollback
+- update
+	- string
+	- int
+This is basically write ahead log. 
+Each log needs its own type(we'll use rust enum tag)
+interestingly, the update needs to be specific. I thought i could simply add extra subtag for an arbitrary update operation

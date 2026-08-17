@@ -496,4 +496,10 @@ this, we can be sure that commit = written to disk
 we skip redo all the way.
 
 **Redo-Only**
-Never flush anything during tx, all written to buffer.
+Never flush anything during tx, all written to buffer + log
+no need to undo as nothing ever written to disk
+but require pinning alot of buffers, may risk of buffer contention
+
+
+**5.3.5 WAL**
+

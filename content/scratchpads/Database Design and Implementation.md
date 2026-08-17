@@ -487,3 +487,6 @@ stage 2
 redo log -> redo commited transactions that hasn't been written to disk yet. reads forward. It gathers the list of commited tx from stage 1 ... 2 birds 1 stone <img src="https://raw.githubusercontent.com/luqmansen/emoji/refs/heads/master/emoji/blob/blob-bird.png" alt="Blob_blob-bird" title="Blob_blob-bird" class="emoji-image m-0" width=25px style="margin: 0px;"> 
 
 actually, redo doesn't care about what states of the disk, that is, it may have written to disk, but redo algorithm will overwrite whatever there, because log is the source of truth.
+
+**5.3.4 Undo-Only and Redo-Only Recovery**
+

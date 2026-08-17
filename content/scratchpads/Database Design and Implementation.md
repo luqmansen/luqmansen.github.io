@@ -496,3 +496,4 @@ this, we can be sure that commit = written to disk
 we skip redo all the way.
 
 **Redo-Only**
+Never flush anything during tx, all written to buffer.

@@ -8,7 +8,7 @@ Why? Because once, before I learned rust properly, during reading the [[Database
 
 Hence, I want to synthesis what I have learned after that, during following this [[LSM in 3 weeks]] course. Most of these patterns are something that observed and I should've known during my first attempt of writing database in Rust.
 
-## Serialized Write + RW-Lock
+## Read-Copy-Update Pattern
 
 This is one of the most important pattern when working with stateful app in rust, in particular, working with the borrowing rules. This pattern was all over the place during the early week 1 of [[LSM in 3 weeks]].  
 

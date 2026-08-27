@@ -28,6 +28,7 @@ Query Optimization Techniques
 	- (too broad, will add more details)
 - Query unnesting
 	- https://15799.courses.cs.cmu.edu/spring2025/papers/11-unnesting/neumann-btw2015.pdf
+	- https://www.scattered-thoughts.net/writing/materialize-decorrelation
 
 Query Execution
 - Vectorized Execution
